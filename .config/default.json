@@ -1,0 +1,54 @@
+{
+    "name": "Live Characters Wiki",
+    "short_name": "LiCa Wiki",
+    "description": "バーチャルYouTuber (VTuber) をはじめとした、リアルタイムで動くライブキャラクターを集めています。",
+    "default_meesage": "LiCa Wikiは、VTuberまとめサイトです。",
+    "author": "Virtual YouTubers Fans! (VYTF編集チーム)",
+    "url":{
+        "path": "/wiki",
+        "host": "vytfs.github.io",
+        "scheme": "https"
+    },
+    "pages_src": {
+        "path": "./pages/",
+        "src": "**/*.{html,htm,pug,md}"
+    },
+    "page_namingrule": "name",
+    "locale": "ja",
+    "theme_color": {
+        "primary": "#ff0000",
+        "secondary": "#282828"
+    },
+    "default": {
+        "template": "default"
+    },
+    "social_media" : {
+        "twitter": {
+            "stalk": "aqzti",
+            "share": true,
+            "card": true
+        },
+        "LINE": {
+            "stalk": false,
+            "share": true
+        },
+        "facebook": {
+            "stalk": false,
+            "share": true
+        },
+        "flickr": {
+            "stalk": false,
+            "share": false
+        },
+        "github": {
+            "stalk": "vytfs",
+            "share": false
+        },
+        "share_button": true
+    },
+    "rss_url": "https://github.com/vytfs/wiki/commits/master.atom",
+    "manifest": {
+        "start_url": "./",
+        "display": "minimal-ui"
+    }
+}

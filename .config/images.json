@@ -1,0 +1,64 @@
+{
+    "images": {
+        "files": {
+            "all": {
+                "image": {
+                    "pngquant": true,
+                    "concurrent": 30
+                }
+            },
+            "sizes": [
+                {
+                    "resize": {
+                        "width": 1600,
+                        "height": 1600,
+                        "crop": false,
+                        "upscale": false,
+                        "interlace": "line",
+                        "cover": false,
+                        "imageMagick": true
+                    },
+                    "image": {
+                        "jpegRecompress": true,
+                        "mozjpeg": ["-optimize", "-progressive"],
+                        "concurrent": 30
+                    }
+                },
+                {
+                    "rename": {
+                        "suffix": "720"
+                    },
+                    "resize": {
+                        "width": 720,
+                        "height": 720,
+                        "crop": false,
+                        "upscale": true,
+                        "interlace": "line",
+                        "cover": true,
+                        "imageMagick": true,
+                        "concurrent": 30
+                    },
+                    "image": {
+                        "jpegRecompress": true,
+                        "mozjpeg": ["-optimize", "-progressive"],
+                        "concurrent": 30
+                    }
+                }
+            ]
+        }
+    },
+    "icons": [
+        {
+            "path": "/files/images/icons/icon2.svg",
+            "sizes": "700x700",
+            "type": "image/svg+xml"
+        },
+        {
+            "path": "/files/images/icons/icon2.png",
+            "sizes": "700x700",
+            "type": "image/png"
+        }
+    ],
+    "site_card_path": "/files/images/icons/banner2.png",
+    "publisher_image_path": "/files/images/icons/publisher2.png"
+}

@@ -1,0 +1,49 @@
+//-
+  ナビゲーションバー
+
+nav#mainnav.navbar.navbar-light.bg-white.flex-row.p-1
+  button(class="navbar-toggler" type="button" data-toggle="collapse" aria-label="サイドバーを開く").d-lg-none.py-2.px-3.mx-2.sidebar_opener
+    +fa_fw("bars", "fas")
+  a(href=`${site.url.path}/`).navbar-brand#navbar_brand.m-0.p-0
+    img(src=`${site.url.path}/files/images/icons/publisher2.svg` height="30" class="d-inline-block align-top img-fluid" alt=`${site.name}` title=`${site.name}`)
+
+//-
+  パンくずリスト
+
+nav(aria-label="breadcrumb")#breadcrumb.bg-white.sticky-top
+  .container-fulid.px-1.px-lg-5
+    ol.breadcrumb.bg-white.text-secondary.my-0.mx-md-5.mx-1.py-1.px-0
+      - let dirs = page.meta.permalink.split("/")                 // ["","foo","bar","hoge",""] (たとえば)
+      if( dirs.length > 2 )
+        li.breadcrumb-item
+          a(href=`${site.url.path}/`).py-1.text-secondary
+            +fa_fw("home","fas")
+        - let dirpl = "/"
+        - for( let i = 1; i < dirs.length - 1; i++){                // i = 3 の場合
+        -   let nowdir = dirs[i]                                    // "bar"
+        -   dirpl = `${dirpl}${nowdir}/`                            // /foo/bar/
+        -   let indexPage = pages.find(e => e.meta.permalink === dirpl)
+        -   if( indexPage != undefined && i < dirs.length - 2 ){
+        -     if (!!indexPage.attributes.title) {  // // // // // // // // ページがあったら
+          li.breadcrumb-item
+            a(href=`${site.url.path}${dirpl}`).py-1.text-secondary #{indexPage.attributes.title}
+        -     } else {
+          li.breadcrumb-item
+            a(href=`${site.url.path}${dirpl}`).py-1.text-secondary #{nowdir}
+        -     }
+        -   } else if( indexPage == undefined && i < dirs.length - 2 ){ // ページがなかったら
+          li.breadcrumb-item(aria-current="page").text-secondary #{nowdir}
+        -   } else if( i == dirs.length - 2 ){  // // // // // // // // // 該当ページに到着したら
+        -     if (!!page.attributes.title) {
+          li.breadcrumb-item.active
+            button(aria-current="page").text-secondary.font-weight-bold.trigger-gototop.button-like-anchor #{page.attributes.title}
+        -     } else {
+          li.breadcrumb-item.active
+            button(aria-current="page").text-secondary.font-weight-bold.trigger-gototop.button-like-anchor #{nowdir}
+        -     }
+        -   }
+        - }
+      else
+        li.breadcrumb-item.active
+          button(aria-current="page").text-secondary.font-weight-bold.trigger-gototop.button-like-anchor
+            +fa_fw("home","fas")

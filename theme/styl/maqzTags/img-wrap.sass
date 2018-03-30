@@ -1,0 +1,47 @@
+@mixin maqz-img-wrap()
+  display: block
+  width: 100%
+
+  @extend .p-1
+  @extend .p-sm-2
+  @extend .mr-md-2
+  @extend .mb-1
+  @extend .mb-md-2
+  @extend .img-fluid
+  @extend .rounded
+
+  @media (min-width: map-get($grid-breakpoints, sm))
+    width: 320px
+
+  img
+    @extend .img-fluid
+
+span.maqz
+
+  &.maqz-img-wrap
+    @include maqz-img-wrap()
+
+  &.maqz-img-wrap-secondary
+    @include maqz-img-wrap()
+    @extend .bg-secondary
+    @extend .text-white
+
+  &.maqz-img-wrap-primary
+    @include maqz-img-wrap()
+    @extend .bg-primary
+    @extend .text-white
+
+  &.maqz-img-wrap-white
+    @include maqz-img-wrap()
+    @extend .bg-white
+    @extend .text-dark
+
+  &.maqz-img-wrap-dark
+    @include maqz-img-wrap()
+    @extend .bg-dark
+    @extend .text-light
+
+  &.maqz-img-wrap-light
+    @include maqz-img-wrap()
+    @extend .bg-light
+    @extend .text-dark

@@ -1,0 +1,41 @@
+html,
+body
+  word-break: break-word
+  scroll-behavior: smooth
+
+@media (max-width: 350px)
+  html,
+  body
+    font-size: 12px
+
+@media (min-width: 350px)
+  html,
+  body
+    font-size: 14px
+
+@media (min-width: 500px)
+  html,
+  body
+    font-size: 16px
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6
+  font-feature-settings: "palt"
+
+.page-index
+  li
+    a
+      @extend .text-dark
+
+.bg-black, #main.bg-black
+  background-color: #000 !important
+
+ul.simpleindex > li
+  @extend .font-weight-bold
+
+#video-embed
+  background-color: #000
