@@ -1,12 +1,12 @@
 {
-    "name": "Live Characters Wiki",
-    "short_name": "LiCa Wiki",
-    "description": "バーチャルYouTuber (VTuber) をはじめとした、リアルタイムで動くライブキャラクターを集めています。",
-    "default_meesage": "LiCa Wikiは、VTuberまとめサイトです。",
-    "author": "Virtual YouTubers Fans! (VYTF編集チーム)",
+    "name": "第66回翠巒祭 \"Super Crew\"(スパークル)",
+    "short_name": "Super Crew",
+    "description": "第66回を迎える群馬県立高崎高校文化祭「翠巒祭 (すいらんさい)」公式サイトです。",
+    "default_meesage": "第66回を迎える群馬県立高崎高校文化祭「翠巒祭 (すいらんさい)」公式サイトです。",
+    "author": "The 66th Suiran-Festival Executive Committee",
     "url":{
-        "path": "/wiki",
-        "host": "vytfs.github.io",
+        "path": "",
+        "host": "2018.suiranfes.com",
         "scheme": "https"
     },
     "pages_src": {
@@ -24,7 +24,7 @@
     },
     "social_media" : {
         "twitter": {
-            "stalk": "aqzti",
+            "stalk": "suiranfes",
             "share": true,
             "card": true
         },
@@ -41,12 +41,12 @@
             "share": false
         },
         "github": {
-            "stalk": "vytfs",
+            "stalk": "suiranfes",
             "share": false
         },
         "share_button": true
     },
-    "rss_url": "https://github.com/vytfs/wiki/commits/master.atom",
+    "rss_url": "https://github.com/suiranfes/2018.suiranfes.com/commits/master.atom",
     "manifest": {
         "start_url": "./",
         "display": "minimal-ui"
