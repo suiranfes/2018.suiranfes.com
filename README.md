@@ -2,16 +2,16 @@
 
 UNDER DEVELOPMENT!
 
-## LICSENSES
+## LICENSES
 
 ### CONTENTS
 
 ./pages/**/*
 
-NO LICSENSE
+NO LICENSE
 
 ### SYSTEM
 
 except ./pages/**/*
 
-"maqz" system (CC0)
+"maqz" system under CC0
