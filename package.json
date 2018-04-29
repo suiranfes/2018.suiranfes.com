@@ -36,7 +36,6 @@
     "front-matter": "^2.3.0",
     "fuckadblock": "^3.2.1",
     "glob": "^7.1.2",
-    "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-connect": "^5.2.0",
@@ -89,5 +88,7 @@
     "workbox-build": "^2.1.2",
     "workbox-sw": "latest"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp": "^4.0.0"
+  }
 }

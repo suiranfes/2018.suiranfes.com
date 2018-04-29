@@ -2,11 +2,43 @@
   padding: 0
   margin: 0
   font-size: 16px
+  background-color: $primary
+  @extend .text-white
 
-  .sidebarWrapper
+  .sf-sidebar
     position: sticky
+    padding: 1em 0
     top: 0
     left: 0
+
+    a
+      display: block
+      @extend .text-white
+  
+    .sf-sidebar-item
+      text-align: center
+      font-weight: bold
+      padding: .4em 0
+      font-size: 1.2rem
+    
+    .sf-sidebar-item-parent
+      text-align: center
+      font-weight: bold
+      padding: .4em 0 .15em
+      font-size: 1.2rem
+
+    .sf-sidebar-item-children-wrap
+      padding: 0 0 .4em
+
+    .sf-sidebar-item-child
+      text-align: center
+      font-size: 1rem
+      padding: .1em 0
+      background-color: rgba(0, 0, 0, .1)
+    
+  .sidebar_closer
+    margin: 1rem
+    width: calc(100% - 2rem)
 
   h1, .h1,
   h2, .h2,
@@ -15,11 +47,3 @@
   h5, .h5,
   h6, .h6
     font-size: 1em
-
-  #sidebar_main
-    a
-      @extend .text-dark
-      @extend .border
-      @extend .border-top-0
-      @extend .border-right-0
-      @extend .border-left-0
