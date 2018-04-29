@@ -128,19 +128,9 @@ html(lang=site.locale)
 
           #footer_wrap.py-3.bg-white
             footer.container-fluid
-              .alert.alert-warning(role="alert").my-2
-                | 人力でデータを追加しているため、漏れや間違いが起きます。TwitterやIssueへお知らせください！
-                br
-                | 当サイトでは編集に協力してくださる方を募集しています！
+              .alert.alert-info(role="alert").my-2
+                | 翠巒祭は撮影可能です。常識をもって撮影してください。
               p.m-0 Copyright: #{site.author}
-              p.m-0
-                | ライセンス 
-                a(href='http://creativecommons.org/licenses/by-nc/4.0/', target='_blank').text-dark
-                  +fa_fw('creative-commons', 'fab')
-                  | BY-NC (文章)
-                |  / 
-                | CC0 (maqzシステム)
-              p.m-0.small.text-muted This site built with maqz
 
     block includes_foot
       include ../includes/_includes_foot.pug

@@ -537,8 +537,7 @@ gulp.task('copy-publish',
         gulp.parallel(
             'copy-theme-static',
             'copy-files',
-            'copy-wtfpjax',
-            'copy-f404'
+            'copy-wtfpjax'
         ),
         (cb) => { cb() } 
     )

@@ -4,86 +4,19 @@ block _script
 block _mixin
   include ../includes/_mixins.pug
 
-.container.sidebarWrapper
-  .bg-danger.text-white.py-4.text-center
-    span.font-weight-bold 更新ほぼ停止中
-    br
-    | 新人発掘を優先
-  a(href='https://twitter.com/vytfs_', target='_blank').font-weight-bold.bg-info.text-white.text-center.py-2.d-block
-    | Twitterには常駐
-  a(href='https://docs.google.com/forms/d/e/1FAIpQLScaHN6Dr9aCjawSBVtoYV3GbSRJd0MSwWEqISmkgbbNSK5viA/viewform', target='_blank').font-weight-bold.bg-success.text-white.text-center.py-2.d-block
-    | キャラ情報追加
-  a(href='https://misskey.xyz/lcw', target='_blank').font-weight-bold.bg-light.text-black.text-center.py-2.mb-3.d-block
-    | キリ番Bot on Misskey
-  ul.list-unstyled#sidebar_main
-    block main
-      block home
-        li.font-weight-bold
-          a(href=`${site.url.path}/`)
-            +fa_fw('home','fas')
-            | Home
-      block about
-        li.font-weight-bold
-          a(href=`${site.url.path}/whats_vtuber/`)
-            | VTuberとは
-      block about
-        li.font-weight-bold
-          a(href=`${site.url.path}/about_site/`).text-danger
-            | このサイトについて
-      block about
-        li.font-weight-bold
-          a(href=`${site.url.path}/contribute/`)
-            | 編集に参加する
-      block character
-        li: a(href=`${site.url.path}/character/`).font-weight-bold
-          +fa_fw('address-book')
-          | キャラクター
-          ul
-            li
-              a(href=`${site.url.path}/character/indexes/technologies/`)
-                +fa_fw('cogs')
-                | 技術から探す
-            li
-              a(href=`${site.url.path}/character/indexes/tags/`)
-                +fa_fw('tags')
-                | タグから探す
-      block statistics
-        li.font-weight-bold
-          a(href=`${site.url.path}/statistics/`)
-            +fa_fw('chart-line')
-            | 統計グラフ
-      block news
-        li.font-weight-bold
-          a(href=`${site.url.path}/news/`)
-            +fa_fw('newspaper')
-            | ニュース
-      block articles
-        li.font-weight-bold
-          a(href=`${site.url.path}/articles/`)
-            +fa_fw('folder-open')
-            | 特集
+block body
+  .sf-sidebar
+    a(href="/").sf-sidebar-item Top
+    a(href="/classroom/").sf-sidebar-item 一般展示
+    a(href="/events/").sf-sidebar-item-parent イベント
+    .sf-sidebar-item-children-wrap
+      a(href="/events/stage/").sf-sidebar-item-child イベントステージ
+      a(href="/events/gym/").sf-sidebar-item-child 体育館行事
+      a(href="/events/courtyard/").sf-sidebar-item-child 中庭
+    a(href="/foods/").sf-sidebar-item-parent 食べ物
+    .sf-sidebar-item-children-wrap
+      a(href="/foods/stalls/").sf-sidebar-item-child 模擬店
+      a(href="/foods/cafeteria/").sf-sidebar-item-child 喫茶
+      a(href="/foods/restaurant/").sf-sidebar-item-child 食堂
 
-  block footer
-    .text-center.my-3
-      a(href="https://twitter.com/vytfs_", target="_blank").text-primary
-        +fa_fw('twitter', 'fab')
-      |  
-      a(href="https://github.com/vytfs/wiki", target="_blank").text-primary
-        +fa_fw('github','fab')
-      |  
-      a(href="https://misskey.xyz/lcw", target="_blank").text-primary
-        | Bot on Misskey
-
-    .text-muted.text-center
-      small
-        p.mb-1.p-0
-          a(href="https://github.com/vytfs/wiki" target="_blank").text-muted
-            +fa_fw('github','fab')
-            | GitHubで編集に参加する
-        p
-          a(href="https://travis-ci.org/vytfs/wiki" target="_blank" title="Travis CI").text-muted
-            | built at 
-            - const nowdate = new Date()
-            != nowdate.toJSON()
-
-    button(type="button").mt-3.sidebar_closer.btn.btn-outline-success.btn-block.d-lg-none 閉じる
+  button(type="button").sidebar_closer.btn.btn-outline-secondary.btn-block.d-lg-none 閉じる
