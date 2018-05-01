@@ -4,10 +4,19 @@
 
   & > a
     @extend .d-block
-    @extend .text-dark
     @extend .px-xl-3
     @extend .px-1
     @extend .py-1
+    @extend .rounded
+    color: inherit
+    background-color: #fff
+    transition: .3s
+
+    &:hover
+      background-color: $primary
+      color: #fff
+      text-decoration: none
+      @extend .text-white
 
     & > article
 

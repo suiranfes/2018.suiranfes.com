@@ -174,15 +174,15 @@ async function register_pages(){
         if( page.meta.permalink.indexOf('/') != 0 ) page.meta.permalink = '/' + page.meta.permalink
         if( page.meta.permalink.lastIndexOf('index') == page.meta.permalink.length - 5 && page.meta.permalink.indexOf('index') != -1 ) page.meta.permalink = page.meta.permalink.slice(0,-5)
         else if( page.meta.permalink.lastIndexOf('/') != page.meta.permalink.length - 1 ) page.meta.permalink = page.meta.permalink + '/'
-        if( typeof page.attributes.tags === 'string' ) page.attributes.tags = page.attributes.tags.split(' ')
-        if( typeof page.attributes.categories === 'string' ) page.attributes.categories = page.attributes.categories.split(' ')
-        if( typeof page.attributes.tag === 'string' ){
-            page.attributes.tags = page.attributes.tag.split(' ')
-            delete page.attributes.tag
+        if( typeof page.attributes.keywords === 'string' ) page.attributes.keywords = page.attributes.keywords.split(' ')
+        if( typeof page.attributes.players === 'string' ) page.attributes.players = page.attributes.players.split(' ')
+        if( typeof page.attributes.keyword === 'string' ){
+            page.attributes.keywords = page.attributes.keyword.split(' ')
+            delete page.attributes.keyword
         }
-        if( typeof page.attributes.category === 'string' ){
-            page.attributes.categories = page.attributes.category.split(' ')
-            delete page.attributes.category
+        if( typeof page.attributes.player === 'string' ){
+            page.attributes.players = page.attributes.player.split(' ')
+            delete page.attributes.player
         }
         return page
     }
@@ -311,18 +311,6 @@ gulp.task('js', (cb) => {
             $.util.log($.util.colors.green(`✔ assets/main.min.js`))
         }
         cb()
-    })
-})
-
-gulp.task('watcher', (cb) => {
-    gulp.watch(['theme/**/*',`!${temp_dir}**/*`,'pages/**/*','./.config/**/*'], gulp.series(gulp.parallel('wait-5sec','register'),'server',(cb)=>{cb()}))
-    gulp.watch(['files/**/*'], gulp.series('wait-5sec','prebuild-files',(cb)=>{cb()}))
-})
-
-gulp.task('connect', () => {
-    $.connect.server({
-        root: 'docs',
-        livereload: true
     })
 })
 
@@ -572,7 +560,6 @@ gulp.task('default',
 
 gulp.task('prebuild-files',
     gulp.series(
-        'register',
         'clean-dist-files',
         'copy-prebuildFiles',
         'image-prebuildFiles',
@@ -580,21 +567,43 @@ gulp.task('prebuild-files',
     )
 )
 
+gulp.task('core-with-pf',
+    gulp.series(
+        gulp.parallel('js', 'css', 'pug', 'prebuild-files'),
+        gulp.parallel('clean-temp', 'copy-publish', 'make-subfiles'),
+        'make-sw', 'last',
+        (cb) => { cb() }
+    )
+)
+
 gulp.task('travis_ci',
     gulp.series(
+        'register',
         'prebuild-files',
         'default',
         (cb) => { cb() }
     )
 )
 
+gulp.task('watcher', (cb) => {
+    gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*'], gulp.series('server',(cb)=>{cb()}))
+    gulp.watch(['files/**/*', './.config/**/*'], gulp.series('prebuild-files',(cb)=>{cb()}))
+})
+
 gulp.task('watch',
     gulp.series(
-        'config',
+        'wait-5sec', 'register', 'config',
         'watcher',
         (cb) => { cb() } 
     )
 )
+
+gulp.task('connect', () => {
+    $.connect.server({
+        root: 'docs',
+        livereload: true
+    })
+})
 
 gulp.task('server',
     gulp.series(
@@ -609,7 +618,7 @@ gulp.task('local-server',
     gulp.series(
         'register',
         'config', 'debug-override',
-        'core',
+        'core-with-pf',
         gulp.parallel('connect', 'watch'),
         (cb) => { cb() } 
     )

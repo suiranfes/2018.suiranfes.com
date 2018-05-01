@@ -29,7 +29,6 @@
     "cafy": "^3.2.0",
     "chart.js": "^2.7.1",
     "cheerio": "^1.0.0-rc.2",
-    "chirno": "latest",
     "clean-css": "^4.1.9",
     "colors": "^1.1.2",
     "extend": "^3.0.1",
@@ -89,6 +88,8 @@
     "workbox-sw": "latest"
   },
   "dependencies": {
-    "gulp": "^4.0.0"
+    "bootstrap": "^4.1.1",
+    "gulp": "^4.0.0",
+    "npm": "^6.0.0"
   }
 }

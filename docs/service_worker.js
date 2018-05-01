@@ -4,11 +4,11 @@ const workboxSW = new self.WorkboxSW()
 workboxSW.precache([
   {
     "url": "assets/main.js",
-    "revision": "17cc7b17db94bcb036d6bbfb97242634"
+    "revision": "d54aed18ebcfed7a724a8b7924a883e2"
   },
   {
     "url": "assets/main.min.js",
-    "revision": "553e34fa004b160256875e073ffb93bb"
+    "revision": "2c7815c1ccbfc1b461dc86815bac1f59"
   },
   {
     "url": "assets/pjax-api.js",
@@ -20,7 +20,7 @@ workboxSW.precache([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "c8730a9048959c699fc78b8652132357"
+    "revision": "f043e0f2e6a017fd489b64e0c4ad83de"
   },
   {
     "url": "files/images/icons/manifest.json",
@@ -28,11 +28,11 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "d598d90ae15b8501f0c3dda40027cc79"
+    "revision": "0f3bcdeaa0607126fa15eba674e6fc43"
   },
   {
     "url": "manifest.json",
-    "revision": "fadd35a9439174a62a9f99217e98f28a"
+    "revision": "d6fc5a630411d68fbd850c2278e99f5b"
   },
   {
     "url": "workbox-sw.js",

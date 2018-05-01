@@ -7,16 +7,26 @@ block _mixin
 block body
   .sf-sidebar
     a(href="/").sf-sidebar-item Top
+    a(href="/transportation/").sf-sidebar-item バス#[small など 来場方法]
     a(href="/classroom/").sf-sidebar-item 一般展示
     a(href="/events/").sf-sidebar-item-parent イベント
     .sf-sidebar-item-children-wrap
-      a(href="/events/stage/").sf-sidebar-item-child イベントステージ
-      a(href="/events/gym/").sf-sidebar-item-child 体育館行事
-      a(href="/events/courtyard/").sf-sidebar-item-child 中庭
+      .d-flex.flex-wrap
+        a(href="/events/stage/").sf-sidebar-item-child.w-50.flex-fill イベントステージ
+        a(href="/events/gym/").sf-sidebar-item-child.w-50.flex-fill 体育館行事
+        a(href="/events/hall/").sf-sidebar-item-child.w-50.flex-fill 翠巒会館
+        a(href="/events/courtyard/").sf-sidebar-item-child.w-50.flex-fill 中庭
+      .d-flex.flex-wrap.border.border-right-0.border-bottom-0.border-left-0
+        a(href="/events/indexes/keyword/").sf-sidebar-item-child.w-50.flex-fill
+          +fa_fw('tags')
+          | キーワード
+        a(href="/events/indexes/player/").sf-sidebar-item-child.w-50.flex-fill
+          +fa_fw('user')
+          | 出演者
     a(href="/foods/").sf-sidebar-item-parent 食べ物
     .sf-sidebar-item-children-wrap
       a(href="/foods/stalls/").sf-sidebar-item-child 模擬店
       a(href="/foods/cafeteria/").sf-sidebar-item-child 喫茶
       a(href="/foods/restaurant/").sf-sidebar-item-child 食堂
 
-  button(type="button").sidebar_closer.btn.btn-outline-secondary.btn-block.d-lg-none 閉じる
+    button(type="button").sidebar_closer.btn.btn-outline-secondary.btn-block.d-lg-none 閉じる

@@ -8,6 +8,7 @@ links:
 since: 2018-06-02T12:35:00+09:00
 until: 2018-06-02T13:10:00+09:00
 place: イベントステージ
-keywords: [漢組,和太鼓,音楽]
+keywords: 翠巒音楽祭
+players: 和太鼓部
 layout: event
 ---

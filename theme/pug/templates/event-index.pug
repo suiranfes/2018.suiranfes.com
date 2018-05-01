@@ -43,7 +43,8 @@ append preset
       if( query.directories ) qpages = pathFilter( query.directories, qpages )
 
       if( query.place || query.place ) addQuery( query.place || query.place, "place" )
-      if( query.tag || query.tags ) addQuery( query.tag || query.tags, "tags" )
+      if( query.keyword || query.keywords ) addQuery( query.keyword || query.keywords, "keywords" )
+      if( query.player || query.players ) addQuery( query.player || query.players, "players" )
       if(queries.length > 0){
         qpages = qpages.filter(function(e,i,a){
           for( let m = 0; m < queries.length; m++ ){
@@ -81,12 +82,18 @@ block main
         != getTL(main_html)
 
       #event_index.mt-2
-        h2.h4.my-2.px-3.py-2.day#day1.text-info.border.border-info.rounded 1日目 6月2日(土)
-        each thispage, i in qpages
-          a(href=`${site.url.path}${thispage.meta.permalink}`).bg-white
-            +article(thispage)
-          if (qpages.length < i + 3 && new Date(thispage.attributes.since) < new Date('2018-06-03T00:00:00+09:00') && new Date(qpages[i+1].attributes.since) > new Date('2018-06-03T00:00:00+09:00'))
+        if qpages.length > 0
+          h2.h4.my-2.px-3.py-2.day#day1.text-info.border.border-info.rounded 1日目 6月2日(土)
+          if new Date(qpages[0].attributes.since) > new Date('2018-06-03T00:00:00+09:00')
+            p.px-xl-3.px-1.py-0.my-1 なし
+          each thispage, i in qpages
+            a(href=`${site.url.path}${thispage.meta.permalink}`)
+              +article(thispage)
+            if (qpages[i+1] && new Date(thispage.attributes.since) < new Date('2018-06-03T00:00:00+09:00') && new Date(qpages[i+1].attributes.since) > new Date('2018-06-03T00:00:00+09:00'))
+              h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
+          if new Date(qpages[qpages.length - 1].attributes.since) < new Date('2018-06-03T00:00:00+09:00')
             h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
+            p.px-xl-3.px-1.py-0.my-1 なし
 
 mixin article(thispage)
   - let since = moment(thispage.attributes.since)

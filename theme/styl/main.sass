@@ -1,62 +1,76 @@
 /*!
- * Chirno v4.0.0-beta.2-chirno17324 (https://chirno.tmin.xyz/)
- * Copyright 2017 aqz
- * Licensed under MIT (https://github.com/9-chirno/chirno/blob/master/LICENSE)
- *
- * Based on Bootstrap v4.0.0-beta.2 (https://getbootstrap.com/)
- * Copyright 2011-2017 The Bootstrap Authors
- * Copyright 2011-2017 Twitter, Inc.
+ * Copyright 2018 suiranfes
+ * https://github.com/suiranfes/2018.suiranfes.com
+ * 
+ * Bootstrap v4.1.1 (https://getbootstrap.com/)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+$font-family-sans-serif: faqz-p, -apple-system, BlinkMacSystemFont, "Yu Gothic", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+$font-family-monoscape: faqz-m, -apple-system, BlinkMacSystemFont, "Yu Gothic", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+$font-family-base: faqz-p, -apple-system, BlinkMacSystemFont, "Yu Gothic", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+
+$font-weight-light: 200
+$font-weight-normal: 300
+$font-weight-bold: 700
+
+$font-weight-base: $font-weight-normal
+$line-height-base: 1.6
+
+$headings-font-family: faqz-c, -apple-system, BlinkMacSystemFont, "Yu Gothic", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+$headings-font-weight: 200
+$headings-line-height: 1.2
+$headings-color: inherit
 
 $cyan: #00eaf7
 $yellow: #fffc32
 $primary: $cyan
 $info: #6610f2
-@import "../../node_modules/chirno/scss/functions"
-@import "../../node_modules/chirno/scss/variables"
+@import "../../node_modules/bootstrap/scss/functions"
+@import "../../node_modules/bootstrap/scss/variables"
 
-$headings-font-weight: 700
 $breadcrumb-divider-color: $gray-800
 $breadcrumb-divider: "・"
 
-@import "../../node_modules/chirno/scss/mixins"
-@import "../../node_modules/chirno/scss/root"
-@import "../../node_modules/chirno/scss/print"
-@import "../../node_modules/chirno/scss/reboot"
-@import "../../node_modules/chirno/scss/type"
-@import "../../node_modules/chirno/scss/images"
-@import "../../node_modules/chirno/scss/code"
-@import "../../node_modules/chirno/scss/grid"
-@import "../../node_modules/chirno/scss/tables"
-@import "../../node_modules/chirno/scss/forms"
-@import "../../node_modules/chirno/scss/buttons"
-@import "../../node_modules/chirno/scss/transitions"
-@import "../../node_modules/chirno/scss/dropdown"
-@import "../../node_modules/chirno/scss/button-group"
-@import "../../node_modules/chirno/scss/input-group"
-@import "../../node_modules/chirno/scss/custom-forms"
-@import "../../node_modules/chirno/scss/nav"
-@import "../../node_modules/chirno/scss/navbar"
-@import "../../node_modules/chirno/scss/card"
-@import "../../node_modules/chirno/scss/breadcrumb"
-@import "../../node_modules/chirno/scss/pagination"
-@import "../../node_modules/chirno/scss/badge"
-@import "../../node_modules/chirno/scss/jumbotron"
-@import "../../node_modules/chirno/scss/alert"
-@import "../../node_modules/chirno/scss/progress"
-@import "../../node_modules/chirno/scss/media"
-@import "../../node_modules/chirno/scss/list-group"
-@import "../../node_modules/chirno/scss/close"
-@import "../../node_modules/chirno/scss/modal"
-@import "../../node_modules/chirno/scss/tooltip"
-@import "../../node_modules/chirno/scss/popover"
-@import "../../node_modules/chirno/scss/carousel"
-@import "../../node_modules/chirno/scss/utilities"
+@import "../../node_modules/bootstrap/scss/mixins"
+@import "../../node_modules/bootstrap/scss/root"
+@import "../../node_modules/bootstrap/scss/print"
+@import "../../node_modules/bootstrap/scss/reboot"
+@import "../../node_modules/bootstrap/scss/type"
+@import "../../node_modules/bootstrap/scss/images"
+@import "../../node_modules/bootstrap/scss/code"
+@import "../../node_modules/bootstrap/scss/grid"
+@import "../../node_modules/bootstrap/scss/tables"
+@import "../../node_modules/bootstrap/scss/forms"
+@import "../../node_modules/bootstrap/scss/buttons"
+@import "../../node_modules/bootstrap/scss/transitions"
+@import "../../node_modules/bootstrap/scss/dropdown"
+@import "../../node_modules/bootstrap/scss/button-group"
+@import "../../node_modules/bootstrap/scss/input-group"
+@import "../../node_modules/bootstrap/scss/custom-forms"
+@import "../../node_modules/bootstrap/scss/nav"
+@import "../../node_modules/bootstrap/scss/navbar"
+@import "../../node_modules/bootstrap/scss/card"
+@import "../../node_modules/bootstrap/scss/breadcrumb"
+@import "../../node_modules/bootstrap/scss/pagination"
+@import "../../node_modules/bootstrap/scss/badge"
+@import "../../node_modules/bootstrap/scss/jumbotron"
+@import "../../node_modules/bootstrap/scss/alert"
+@import "../../node_modules/bootstrap/scss/progress"
+@import "../../node_modules/bootstrap/scss/media"
+@import "../../node_modules/bootstrap/scss/list-group"
+@import "../../node_modules/bootstrap/scss/close"
+@import "../../node_modules/bootstrap/scss/modal"
+@import "../../node_modules/bootstrap/scss/tooltip"
+@import "../../node_modules/bootstrap/scss/popover"
+@import "../../node_modules/bootstrap/scss/carousel"
+@import "../../node_modules/bootstrap/scss/utilities"
 
 /*!
  *
- * tmin.xyz themed
+ * themed
  *
  */
 
@@ -72,3 +86,5 @@ $breadcrumb-divider: "・"
 @import "./news_index"
 
 @import "./maqzTags"
+
+@import "./faqz"

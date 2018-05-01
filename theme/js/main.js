@@ -1,6 +1,6 @@
 require('jquery')
 
-require('../../node_modules/chirno/dist/js/bootstrap.bundle.js')
+require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.js')
 
 require('./old_browsers')
 require('./gototop')

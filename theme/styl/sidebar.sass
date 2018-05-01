@@ -14,6 +14,12 @@
     a
       display: block
       @extend .text-white
+      transition: .6s
+      background-color: $primary
+
+      &:hover
+        text-decoration: none
+        background-color: lighten($primary, 20)
   
     .sf-sidebar-item
       text-align: center
@@ -28,17 +34,21 @@
       font-size: 1.2rem
 
     .sf-sidebar-item-children-wrap
-      padding: 0 0 .4em
+      padding: 0
 
     .sf-sidebar-item-child
       text-align: center
       font-size: 1rem
-      padding: .1em 0
+      padding: .1em .3em
       background-color: rgba(0, 0, 0, .1)
-    
-  .sidebar_closer
-    margin: 1rem
-    width: calc(100% - 2rem)
+
+      &:hover
+        text-decoration: none
+        background: rgba(0, 0, 0, .03)
+
+    .sidebar_closer
+      margin: 1rem
+      width: calc(100% - 2rem)
 
   h1, .h1,
   h2, .h2,
