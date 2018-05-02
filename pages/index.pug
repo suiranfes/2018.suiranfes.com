@@ -1,3 +1,37 @@
 ---
 title: トップページ
 ---
+
+#topCarousel.carousel.slide(data-ride="carousel")
+  ol.carousel-indicators
+    li(data-target="topCarousel" data-slide-to="0").active
+    li(data-target="topCarousel" data-slide-to="1")
+    li(data-target="topCarousel" data-slide-to="2")
+    li(data-target="topCarousel" data-slide-to="3")
+  .carousel-inner
+    a(href="/transportation/").carousel-item.active
+      img(src="/files/images/top/car_1_transportation.jpg" alt="slide").d-block.w-100
+      .carousel-caption.d-none.d-sm-block.sf-text-shadow
+        h4 バスなど 来場方法
+        p 高崎駅から無料シャトルバス運行！
+    a(href="/events/").carousel-item
+      img(src="/files/images/top/car_2_event.jpg" alt="slide").d-block.w-100
+      .carousel-caption.d-none.d-sm-block.sf-text-shadow
+        h4 イベント
+        p ミスコン(男子校なのに)、クイズ大会、音楽部発表、ライブ etc...
+    a(href="/events/").carousel-item
+      img(src="/files/images/top/car_3_stalls.jpg" alt="slide").d-block.w-100
+      .carousel-caption.d-none.d-sm-block.sf-text-shadow
+        h4 食べ物
+        p 焼きまんじゅう、焼きそば、チュロス、アイス、弁当 etc...
+    a(href="/events/").carousel-item
+      img(src="/files/images/top/car_4_classroom.jpg" alt="slide").d-block.w-100
+      .carousel-caption.d-none.d-sm-block.sf-text-shadow
+        h4 一般展示
+        p ちょっと専門的(?)な部活動展示や、気軽に遊べるクラス展示。通信制も校舎内にて。
+  a.carousel-control-prev(href="#topCarousel" role="button" data-slide="prev")
+    +fa_fw('chevron-left')
+    span.sr-only 前へ
+  a.carousel-control-next(href="#topCarousel" role="button" data-slide="next")
+    +fa_fw('chevron-right')
+    span.sr-only 次へ

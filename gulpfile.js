@@ -585,18 +585,17 @@ gulp.task('travis_ci',
     )
 )
 
-gulp.task('watcher', (cb) => {
-    gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*'], gulp.series('server',(cb)=>{cb()}))
-    gulp.watch(['files/**/*', './.config/**/*'], gulp.series('prebuild-files',(cb)=>{cb()}))
-})
-
-gulp.task('watch',
+gulp.task('watcher',
     gulp.series(
-        'wait-5sec', 'register', 'config',
-        'watcher',
+        'wait-5sec', 'register', 'config', 'debug-override',
         (cb) => { cb() } 
     )
 )
+
+gulp.task('watch', (cb) => {
+    gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*'], gulp.series('watcher', 'server',(cb)=>{cb()}))
+    gulp.watch(['files/**/*', './.config/**/*'], gulp.series('watcher', 'prebuild-files',(cb)=>{cb()}))
+})
 
 gulp.task('connect', () => {
     $.connect.server({
