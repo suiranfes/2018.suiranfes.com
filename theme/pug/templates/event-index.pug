@@ -97,12 +97,14 @@ block main
 
 mixin article(thispage)
   - let since = moment(thispage.attributes.since)
-  article
-    h3.event-title
+  article.event
+    div.event-time
       | #{since.format('LT')} 
       +fa_fw('angle-double-right')
+    h3.event-title
       | #{thispage.attributes.title} 
       if (!page.attributes.query || !page.attributes.query.place)
-        span.font-weight-normal @#{thispage.attributes.place} 
-    p.event-description.p-0.mb-1
-      | #{thispage.attributes.description}
+        span.font-weight-normal @#{thispage.attributes.place}
+    if (thispage.attributes.description != null && thispage.attributes.description != '')
+      p.event-description.p-0.m-0
+        | #{thispage.attributes.description}

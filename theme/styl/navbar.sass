@@ -1,5 +1,10 @@
 nav
   overflow: auto
+
+  &#mainnav
+    background-image: url('/files/images/navbg.png')
+    background-repeat: round
+
   #navbar_items
     width: max-content
     flex: 3 0 0
@@ -15,8 +20,6 @@ nav
     transition: all cubic-bezier(.68,-0.55,.27,1.55)
     font-weight: 700
 
-    img
-      filter: drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 1px #fff)
     .navbar-brand-text
       vertical-align: baseline
       margin-left: 0.375rem
