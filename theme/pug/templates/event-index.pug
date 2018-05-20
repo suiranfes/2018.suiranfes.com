@@ -76,25 +76,26 @@ block title
 block main
 
   #main
-    .container-fluid
-      h1.pt-4.pb-2 #{page.attributes.title}
-      div
-        != getTL(main_html)
-
-      #event_index.mt-5
-        if qpages.length > 0
-          h2.h4.my-2.px-3.py-2.day#day1.text-info.border.border-info.rounded 1日目 6月2日(土)
-          if new Date(qpages[0].attributes.since) > new Date('2018-06-03T00:00:00+09:00')
-            p.px-xl-3.px-1.py-0.my-1 なし
-            h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
-          each thispage, i in qpages
-            a(href=`${site.url.path}${thispage.meta.permalink}`)
-              +article(thispage)
-            if (qpages[i+1] && new Date(thispage.attributes.since) < new Date('2018-06-03T00:00:00+09:00') && new Date(qpages[i+1].attributes.since) > new Date('2018-06-03T00:00:00+09:00'))
+    .py-5
+      h1.p-2 #{page.attributes.title}
+      .container-fluid
+        div
+          != getTL(main_html)
+        
+        #event_index.mt-5
+          if qpages.length > 0
+            h2.h4.my-2.px-3.py-2.day#day1.text-info.border.border-info.rounded 1日目 6月2日(土)
+            if new Date(qpages[0].attributes.since) > new Date('2018-06-03T00:00:00+09:00')
+              p.px-xl-3.px-1.py-0.my-1 なし
               h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
-          if new Date(qpages[qpages.length - 1].attributes.since) < new Date('2018-06-03T00:00:00+09:00')
-            h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
-            p.px-xl-3.px-1.py-0.my-1 なし
+            each thispage, i in qpages
+              a(href=`${site.url.path}${thispage.meta.permalink}`)
+                +article(thispage)
+              if (qpages[i+1] && new Date(thispage.attributes.since) < new Date('2018-06-03T00:00:00+09:00') && new Date(qpages[i+1].attributes.since) > new Date('2018-06-03T00:00:00+09:00'))
+                h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
+            if new Date(qpages[qpages.length - 1].attributes.since) < new Date('2018-06-03T00:00:00+09:00')
+              h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
+              p.px-xl-3.px-1.py-0.my-1 なし
 
 mixin article(thispage)
   - let since = moment(thispage.attributes.since)
