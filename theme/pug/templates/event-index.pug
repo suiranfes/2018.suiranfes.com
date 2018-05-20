@@ -106,7 +106,7 @@ mixin article(thispage)
     h3.event-title
       | #{thispage.attributes.title} 
       if (!page.attributes.query || !page.attributes.query.place)
-        span.font-weight-normal @#{thispage.attributes.place}
+        small.font-weight-normal @#{thispage.attributes.place}
     if (thispage.attributes.description != null && thispage.attributes.description != '')
       p.event-description.p-0.m-0
         | #{thispage.attributes.description}
