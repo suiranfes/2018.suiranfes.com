@@ -88,9 +88,9 @@ let dests = {
     'info': './dist/docs/info.json'
 }
 
-function faSvg(icon, prefix, option){
+/*function faSvg(icon, prefix, option){
     return fontawesome.icon({ prefix: ( prefix || "fas" ), iconName: icon },option).html[0]
-}
+}*/
 
 function existFile(file) {
     try {
@@ -344,6 +344,13 @@ gulp.task('copy-prebuildFiles', (cb) => {
         gulp.dest('./dist/files')
     ], cb)
 })
+gulp.task('copy-f404', (cb) => {
+    pump([
+        gulp.src('dist/docs/404/index.html'),
+        $.rename('404.html'),
+        gulp.dest('./docs')
+    ], cb)
+})
 
 gulp.task('image-prebuildFiles', (cb) => {
     const images_allFalse = {
@@ -514,6 +521,7 @@ gulp.task('wait-10sec', (cb) => {
 gulp.task('last',
     gulp.series(
         'clean-docs',
+        'copy-f404',
         'copy-docs',
         'clean-dist-docs',
         (cb) => { cb() } 
