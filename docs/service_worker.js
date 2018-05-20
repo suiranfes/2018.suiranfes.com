@@ -1,6 +1,6 @@
 self.importScripts('/workbox-sw.js')
 
-const workboxSW = new self.WorkboxSW()
+const workboxSW = new WorkboxSW()
 workboxSW.precache([
   {
     "url": "assets/main.js",
@@ -28,7 +28,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "c6260607b3d5c0b2938dd4a40409667a"
+    "revision": "20aa85d1deedf9d9a62dc1c5abbb1707"
   },
   {
     "url": "manifest.json",

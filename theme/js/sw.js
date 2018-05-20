@@ -1,4 +1,4 @@
 self.importScripts('{path}')
 
-const workboxSW = new self.WorkboxSW()
+const workboxSW = new WorkboxSW()
 workboxSW.precache([])
