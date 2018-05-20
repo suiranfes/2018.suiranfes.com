@@ -48,7 +48,7 @@
     },
     "rss_url": "https://github.com/suiranfes/2018.suiranfes.com/commits/master.atom",
     "manifest": {
-        "start_url": "./",
+        "start_url": ".",
         "display": "minimal-ui"
     }
 }

@@ -28,11 +28,11 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "eed84b2b0116c40320f2c0331f731656"
+    "revision": "ac9a81cada1da971a4eab4d36d51df00"
   },
   {
     "url": "manifest.json",
-    "revision": "d6fc5a630411d68fbd850c2278e99f5b"
+    "revision": "4b81834efb27874f822343f3c85937ae"
   },
   {
     "url": "workbox-sw.js",

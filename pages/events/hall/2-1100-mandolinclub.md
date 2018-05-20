@@ -1,6 +1,6 @@
 ---
 title: ギター･マンドリン部
-description: 高崎女子高音楽部と合同演奏です。
+description: 高崎女子高校ギター･マンドリン部との合同演奏もあります。
 youtube: 
 links:
   - title: マンドリン部Twitter
