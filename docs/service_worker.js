@@ -20,7 +20,7 @@ workboxSW.precache([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "0b9792b16de99b094d2c68df38be9229"
+    "revision": "8792755256fc802db6b0d5da21a80c91"
   },
   {
     "url": "files/images/icons/manifest.json",
@@ -28,7 +28,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "88218c18527eca8545fcc52f7b22d52a"
+    "revision": "3c021907afe81968c299c7a940f17210"
   },
   {
     "url": "manifest.json",

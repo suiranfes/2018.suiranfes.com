@@ -81,11 +81,12 @@ block main
       div
         != getTL(main_html)
 
-      #event_index.mt-2
+      #event_index.mt-5
         if qpages.length > 0
           h2.h4.my-2.px-3.py-2.day#day1.text-info.border.border-info.rounded 1日目 6月2日(土)
           if new Date(qpages[0].attributes.since) > new Date('2018-06-03T00:00:00+09:00')
             p.px-xl-3.px-1.py-0.my-1 なし
+            h2.h4.my-2.px-3.py-2.day#day2.text-danger.border.border-danger.rounded 2日目 6月3日(日)
           each thispage, i in qpages
             a(href=`${site.url.path}${thispage.meta.permalink}`)
               +article(thispage)

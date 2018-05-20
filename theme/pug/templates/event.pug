@@ -16,7 +16,12 @@ block main
             +toc( headings, 2, "ul", "list-unstyled ml-3 page-index")
         section.pt-2.pb-4
           .container-fluid
-            p.font-weight-bold.mb-2 #{(since.toDate() < new Date('2018-06-03T00:00:00+09:00')) ? '1日目' : '2日目'} #[time(datetime=since.toJSON())= since.format('LT')] - #[time(datetime=until.toJSON())= until.format('LT')]
+            p.mb-0
+              b 場所:
+              | #{page.attributes.place}
+              br
+              b 日時: 
+              | #{(since.toDate() < new Date('2018-06-03T00:00:00+09:00')) ? '1日目' : '2日目'} #[time(datetime=since.toJSON())= since.format('LT')] - #[time(datetime=until.toJSON())= until.format('LT')]
             p= page.attributes.description ? page.attributes.description : ''
             if(page.attributes.links)
               div.mb-2.p-0

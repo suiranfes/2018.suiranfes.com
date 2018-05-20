@@ -6,7 +6,8 @@ links:
 since: 2018-06-03T09:30:00+09:00
 until: 2018-06-03T11:00:00+09:00
 place: 第一体育館
-keywords:
+keywords: 定例リーダー公開祭
+players: 應援部
 layout: event
 ---
 

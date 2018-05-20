@@ -6,7 +6,7 @@ links:
 since: 2018-06-02T15:45:00+09:00
 until: 2018-06-02T16:00:00+09:00
 place: 中庭
-keywords:
+keywords: 定例リーダー公開祭
 players: 應援部
 layout: event
 ---

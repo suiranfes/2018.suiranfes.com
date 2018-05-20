@@ -1,37 +1,117 @@
 ---
 title: トップページ
 ---
+.d-none.d-md-block
+  #topCarousel.carousel.slide(data-ride="carousel")
+    ol.carousel-indicators
+      li(data-target="topCarousel" data-slide-to="0").active
+      li(data-target="topCarousel" data-slide-to="1")
+      li(data-target="topCarousel" data-slide-to="2")
+      li(data-target="topCarousel" data-slide-to="3")
+    .carousel-inner
+      a(href="/transportation/").carousel-item.active
+        img(src="/files/images/top/car_1_transportation.jpg" alt="slide").d-block.w-100
+        .carousel-caption.d-none.d-sm-block.sf-text-shadow
+          h3.font-weight-bold バスなど 来場方法
+          p 高崎駅から無料シャトルバス運行！
+      a(href="/events/").carousel-item
+        img(src="/files/images/top/car_2_event.jpg" alt="slide").d-block.w-100
+        .carousel-caption.d-none.d-sm-block.sf-text-shadow
+          h3.font-weight-bold イベント
+          p ミスコン(男子校なのに)、クイズ大会、音楽部発表、ライブ etc...
+      a(href="/foods/").carousel-item
+        img(src="/files/images/top/car_3_stalls.jpg" alt="slide").d-block.w-100
+        .carousel-caption.d-none.d-sm-block.sf-text-shadow
+          h3.font-weight-bold 食べ物
+          p 焼きまんじゅう、焼きそば、チュロス、アイス、弁当 etc...
+      a(href="/classroom/").carousel-item
+        img(src="/files/images/top/car_4_classroom.jpg" alt="slide").d-block.w-100
+        .carousel-caption.d-none.d-sm-block.sf-text-shadow
+          h3.font-weight-bold 一般展示
+          p 専門的で楽しい部活動展示や、気軽に遊べるクラス展示。通信制も校舎内にて。
+    a.carousel-control-prev(href="#topCarousel" role="button" data-slide="prev").sf-text-shadow
+      +fa_fw('chevron-left')
+      span.sr-only 前へ
+    a.carousel-control-next(href="#topCarousel" role="button" data-slide="next").sf-text-shadow
+      +fa_fw('chevron-right')
+      span.sr-only 次へ
 
-#topCarousel.carousel.slide(data-ride="carousel")
-  ol.carousel-indicators
-    li(data-target="topCarousel" data-slide-to="0").active
-    li(data-target="topCarousel" data-slide-to="1")
-    li(data-target="topCarousel" data-slide-to="2")
-    li(data-target="topCarousel" data-slide-to="3")
-  .carousel-inner
-    a(href="/transportation/").carousel-item.active
-      img(src="/files/images/top/car_1_transportation.jpg" alt="slide").d-block.w-100
-      .carousel-caption.d-none.d-sm-block.sf-text-shadow
-        h4 バスなど 来場方法
-        p 高崎駅から無料シャトルバス運行！
-    a(href="/events/").carousel-item
-      img(src="/files/images/top/car_2_event.jpg" alt="slide").d-block.w-100
-      .carousel-caption.d-none.d-sm-block.sf-text-shadow
-        h4 イベント
-        p ミスコン(男子校なのに)、クイズ大会、音楽部発表、ライブ etc...
-    a(href="/events/").carousel-item
-      img(src="/files/images/top/car_3_stalls.jpg" alt="slide").d-block.w-100
-      .carousel-caption.d-none.d-sm-block.sf-text-shadow
-        h4 食べ物
-        p 焼きまんじゅう、焼きそば、チュロス、アイス、弁当 etc...
-    a(href="/events/").carousel-item
-      img(src="/files/images/top/car_4_classroom.jpg" alt="slide").d-block.w-100
-      .carousel-caption.d-none.d-sm-block.sf-text-shadow
-        h4 一般展示
-        p ちょっと専門的(?)な部活動展示や、気軽に遊べるクラス展示。通信制も校舎内にて。
-  a.carousel-control-prev(href="#topCarousel" role="button" data-slide="prev").sf-text-shadow
-    +fa_fw('chevron-left')
-    span.sr-only 前へ
-  a.carousel-control-next(href="#topCarousel" role="button" data-slide="next").sf-text-shadow
-    +fa_fw('chevron-right')
-    span.sr-only 次へ
+.d-block.d-md-none.sf-top-images
+  a(href="/transportation/" style="background-image: url('/files/images/top/car_1_transportation.jpg')").sf-top-images-item
+    h4 バスなど 来場方法
+  a(href="/events/" style="background-image: url('/files/images/top/car_2_event.jpg')").sf-top-images-item
+    h4 イベント
+  a(href="/foods/" style="background-image: url('/files/images/top/car_3_stalls.jpg')").sf-top-images-item
+    h4 食べ物
+  a(href="/classroom/" style="background-image: url('/files/images/top/car_4_classroom.jpg')").sf-top-images-item
+    h4 一般展示
+
+.container-fluid
+  a(href="https://docs.google.com/forms/d/e/1FAIpQLSdXdcOhDEhX2JMvT0vHGikicRxgIGd5_m4ERE9PBIOPwD6u4Q/viewform").btn.btn-info.d-block.mt-3 校内放送 お便り･曲リクエスト
+  .row
+    .col-12.col-lg-6.pt-5
+      h1 第66回翠巒祭
+      p.font-weight-bold 2018年 6月 2日・3日
+      p.lh-12
+        b 開場時間:
+        | 2日(土) 12:00 / 3日(日) 09:00
+        br
+        b 閉場時間:
+        | 16:30 (入場制限 16:00)
+      hr.my-4
+      .md-small
+        h3 ご注意･ご案内
+        :md
+          #### ご安全に配慮して
+          - 会場内、およびシャトルバス内は大変混雑します。スリ・置き引き等のトラブルが発生する恐れがあります。十分ご注意ください。
+          - 熱中症にご注意ください。水分補給をこまめにお願いします。  
+            模擬店にて飲み物をお買い求め頂けます。
+          - 公序良俗に反する行為を禁じます。発見した場合は実行委員及び教員から注意をさせていただきます。改善が見られない場合、ご退場いただく場合もございます。
+          - 部室棟(理科棟)前にてベビーカーをお預かりします。校内展示を安全にご覧いただくためですので、ご理解とご協力をお願い申し上げます。
+
+          #### お問い合わせについて
+          - 翠巒祭実行委員は、規定の黒いTシャツを着用しています。なにか不明なことがあればお気軽にお尋ねください。また、インフォメーションセンターが入口アーチ近くにあります。
+          - 校内の地図は、トイレの場所等は、パンフレットの裏表紙にてご確認いただけます。
+          
+          #### 落とし物･お忘れ物に関して
+          - 靴の落とし物･お忘れ物は、校舎内･1-9「本部」までお問い合わせください。
+          - それ以外の落とし物･お忘れ物は、インフォメーションセンターまたは実行委員までお問い合わせください。
+          
+          #### ごみ捨てに関して
+          - 屋外のゴミステーションと、校舎内のごみ箱にてごみの回収を行っております。ゴミステーションでは、優しくてイケメンで笑顔の優しい清掃課員が案内します。
+          - ごみの分別回収を行っております。ごみの分別回収にご協力ください。
+          - ゴミステーションの位置、および、ごみ分別の種類は、パンフレットをご参照いただくか、実行委員までお問い合わせください。
+
+          #### その他
+          - 翠巒祭はすべて撮影可能です。公開する際は肖像権等にご配慮ください。
+          - スリッパを用意しております。基本的に履物の心配はご不要です。お気軽にお越しください。  
+            ただし、体育館にはスリッパの用意がありません。必要な方はご持参ください。
+          - 芝生を保護するため、指月庭の芝生への立ち入りはご遠慮ください。
+
+    .col-12.col-lg-6.pt-5.md-small
+      .md-small
+        h3 更新履歴
+        p.mb-1 2018-05-20 2018年版サイト公開
+      hr.my-4
+      p.lh-12.mb-3
+        b テーマ:
+        br
+        span.h2 Super Crew
+        br 
+        span.h4 スパークル
+        br
+        | Sparkle; 輝き、才気のきらめき
+      p 第66回翠巒祭のテーマ『Super Crew』は「スパークル(Sparkle)」と読むのですが、Sparkleには「輝き」という意味以外にも「才気のきらめき」という意味があります。
+      p 近年の翠巒祭では、新企画のSUIRAN STATION、校内展示への注力など、内面・外面共に磨きをかけて盛り上がることができました。そんな中、更なる盛り上がりのカギは、今まで十分に発揮されずにいた高高生の秘めたる才能にあると考えます。
+      p 今回の目標は、テーマの如く高高生一人一人が才能を十分に発揮し巧みに翠巒祭を作り上げる。そのために一人一人が活躍する場を増やすことです。
+      p また、高高生一人一人が最高の(Super)乗務員(Crew)となり、全ての来場者が来て良かったと思えるような翠巒祭にする。そして前回同様、「おもてなし」の心を忘れないという意味も込められています。
+      hr.my-4
+      :md
+        ### 翠巒祭とは
+
+        群馬県立高崎高校文化祭「翠巒祭」は、高高生が主体となって創り上げる県内最大級の文化祭です。
+
+        毎年開催されており、今年で64回目を迎えます。高高の一年間の行事の中でも最大の盛り上がりを見せ、ここ数年は1万人以上の方々がご来場くださっています。
+
+        翠巒祭の見どころは校門で来場したみなさんを迎えるアーチ、生徒全員の力を結集して作る巨大壁画、ミス高高コンテストや高高王などの楽しい企画が満載のイベントステージ、そして校舎内の一般展示。
+        高高生全員が作り上げた「翠巒祭」ぜひ心ゆくまでお楽しみください。
