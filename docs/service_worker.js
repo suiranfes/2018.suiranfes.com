@@ -20,19 +20,15 @@ workboxSW.precache([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "de5ccd53962aa9b62aeed4e11f67cbc3"
-  },
-  {
-    "url": "files/images/icons/manifest.json",
-    "revision": "1aa32197cd997823573ea9f3bac73d26"
+    "revision": "020cf0c45a89d821d49aa91c30e616f9"
   },
   {
     "url": "info.json",
-    "revision": "20aa85d1deedf9d9a62dc1c5abbb1707"
+    "revision": "5d35c3dd967434e544c686c0573dc541"
   },
   {
     "url": "manifest.json",
-    "revision": "76dede07c9bf21affd7c963745ffd06a"
+    "revision": "3a9b843ad4eb52464a5e0628d9d82372"
   },
   {
     "url": "workbox-sw.js",

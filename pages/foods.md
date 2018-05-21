@@ -1,7 +1,7 @@
 ---
 title: 食べ物
 description: 美味しい食べ物。模擬店、食堂、喫茶店があり、それぞれ別のメニューを提供しています。
-layout: hidden
+layout: article
 ---
 
 ## ご注意･ご案内

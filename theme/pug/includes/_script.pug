@@ -57,22 +57,6 @@ block functions
         return pug_api.render(`${theme_pug.script}\n${theme_pug.mixin}\n${val}`, pug_o)
       }
 
-  block md_better
-    -
-      function md_better(htm){
-        let $ = cheerio.load(htm, {decodeEntities: false})
-
-        $('h2').addClass('mt-5 p-2 border border-left-0 border-right-0 border-primary')
-        $('h3, h4').addClass('mt-4 p-1 border border-left-0 border-top-0 border-right-0 border-primary')
-        $('h5, h6').addClass('mt-3 p-1 border border-left-0 border-top-0 border-right-0 border-primary')
-        $('img[src^="/"]').attr( 'src', function(i, el){ return `${site.url.path}${$(this).attr('src')}` })
-        $('img[src^="files/"]').attr( 'src', function(i, el){ return `${site.url.path}/${$(this).attr('src')}` })
-        $('table').addClass('table table-sm table-bordered')
-        $('a[href^="http"], a[href^="//"]').append(fontawesome.icon({ prefix: "fas", iconName: "external-link-alt" },{classes:['fa-fw']}).html[0]).attr({target:'_blank', rel:'noopener'})
-
-        return $('body').html()
-      }
-
   block toamp
     -
       function toamp(htm){
@@ -185,7 +169,7 @@ block make_html
     case page.meta.src.ext
       when '.md'
         - main_html = kramed(page.body)
-        - main_html = md_better(main_html)
+        - main_html = require('./scripts/better_markdown')(main_html, site.url.path)
         //- main_html = maly(main_html)
         - main_html = htmlmin(main_html ,{"collapseWhitespace": true,"removeEmptyAttributes": false,"removeEmptyElements": false})
       when '.html'
@@ -203,33 +187,7 @@ block amp
 
 block highlight
   -
-    function fuckescape(val){
-      val = val.replace(/&amp;/g, "&") .replace(/&lt;/g, "<") .replace(/&gt;/g, ">") .replace(/&#39;/g, "'") .replace(/&quot;/g, "\"")
-      val = val.replace(/&lt;/g, "<") .replace(/&gt;/g, ">") .replace(/&#39;/g, "'") .replace(/&quot;/g, "\"")
-      return val
-    }
-    function highl(htm){
-      htm = htm.replace(/<pre><code class="(.*?)">([\s\S]*?)<\/code><\/pre>/gi, function(a, l, b){
-        b = fuckescape(b)
-        if(l.indexOf("lang-") == 0) l = l.slice(5)
-        try {
-          const hled = hljs.highlight(l, b)
-          return `<pre><code class="${l}">${hled.value}</code></pre>`
-        } catch(e) {
-          messenger("hljs", messages.hljs_langerr)
-          const hled = hljs.highlightAuto(b)
-          return `<pre><code class="hljs ${hled.language} border rounded">${hled.value}</code></pre>`
-        }
-      } )
-      htm = htm.replace(/<pre>\s*?<code>([\s\S]*?)<\/code>\s*?<\/pre>/gi, function(a, b){
-        b = fuckescape(b)
-        const hled = hljs.highlightAuto(b)
-        return `<pre><code class="hljs ${hled.language} border rounded">${hled.value}</code></pre>`
-      }
-      )
-      return htm
-    }
-    if(!is_subcall) main_html = highl(main_html)
+    if(!is_subcall) main_html = require('./scripts/highl')(main_html)
 
 block listUp_hedings
   -

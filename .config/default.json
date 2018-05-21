@@ -16,7 +16,7 @@
     "page_namingrule": "name",
     "locale": "ja",
     "theme_color": {
-        "primary": "#00eaf7",
+        "primary": "#00e0ed",
         "secondary": "#fffc32"
     },
     "default": {

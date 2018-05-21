@@ -59,6 +59,6 @@
             "type": "image/png"
         }
     ],
-    "site_card_path": "/files/images/icons/banner2.png",
-    "publisher_image_path": "/files/images/icons/publisher2.png"
+    "site_card_path": "/files/images/icons/thumb.png",
+    "publisher_image_path": "/files/images/icons/publisher3.png"
 }

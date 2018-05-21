@@ -1,9 +1,13 @@
 
 const pugfilters = module.exports = {}
-const kramed = require('kramed')
+const site = require('./.config/default.json')
 
 pugfilters.md = function(str) {
-    return kramed(str)
+    let htm = require('kramed')(str)
+    htm = require('./scripts/better_markdown')(htm, site.url.path)
+    htm = require('./scripts/highl')(htm)
+    htm = require('html-minifier').minify(htm, {"collapseWhitespace": true,"removeEmptyAttributes": false,"removeEmptyElements": false})
+    return htm
 };
 pugfilters.oneline = function(str) {
     return str.replace(/\r?\n/g,"")
