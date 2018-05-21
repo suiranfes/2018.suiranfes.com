@@ -8,7 +8,8 @@ layout: article
 
 パンフレットにあるスタンプラリーを埋めることで、ストラップが貰えます。
 
-販売･交換場所はインフォメーションセンター、イベントステージ横、第一体育館の3か所です。
+販売･交換場所はインフォメーションセンター、イベントステージ横、第一体育館の3か所です。  
+地図上に<span class="maqz maqz-emoji">![うちわマーク](files/images/map/i_u_uchiwa.png)</span>で示してあります。
 
 ## うちわ
 <span class="maqz maqz-img-wrap-dark">![うちわ](files/images/uchiwa720.jpg)</span>

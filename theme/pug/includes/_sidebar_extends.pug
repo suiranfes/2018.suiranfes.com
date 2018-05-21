@@ -11,31 +11,32 @@ block body
       br
       | 2018/06/02 - 03
 
-    a(href="/").sf-sidebar-item Top
-    a(href="/transportation/").sf-sidebar-item バス#[small など 来場方法]
-    a(href="/classroom/").sf-sidebar-item 一般展示
-    a(href="/events/").sf-sidebar-item-parent イベント
+    a(href="/").sf-sidebar-item #[+fa_fw('chevron-right')] Top
+    a(href="/transportation/").sf-sidebar-item #[+fa_fw('chevron-right')] バス#[small など 来場方法]
+    a(href="/classroom/").sf-sidebar-item #[+fa_fw('chevron-right')] 一般展示
+    a(href="/events/").sf-sidebar-item-parent #[+fa_fw('chevron-right')] イベント
     .sf-sidebar-item-children-wrap
       .d-flex.flex-wrap
-        a(href="/events/stage/").sf-sidebar-item-child.w-50.flex-fill イベントステージ
-        a(href="/events/gym/").sf-sidebar-item-child.w-50.flex-fill 体育館行事
-        a(href="/events/hall/").sf-sidebar-item-child.w-50.flex-fill 翠巒会館
-        a(href="/events/courtyard/").sf-sidebar-item-child.w-50.flex-fill 中庭
+        a(href="/events/stage/").sf-sidebar-item-child.flex-auto ・ イベントステージ
+        a(href="/events/gym/").sf-sidebar-item-child.flex-auto ・ 体育館行事
+        a(href="/events/hall/").sf-sidebar-item-child.flex-auto ・ 翠巒会館
+        a(href="/events/courtyard/").sf-sidebar-item-child.flex-auto ・ 中庭
       .d-flex.flex-wrap.border.border-right-0.border-bottom-0.border-left-0
-        a(href="/events/indexes/keyword/").sf-sidebar-item-child.w-50.flex-fill
+        a(href="/events/indexes/keyword/").sf-sidebar-item-child.flex-auto
           +fa_fw('tags')
           | キーワード
-        a(href="/events/indexes/player/").sf-sidebar-item-child.w-50.flex-fill
+        a(href="/events/indexes/player/").sf-sidebar-item-child.flex-auto
           +fa_fw('user')
           | 出演者
-    a(href="/foods/").sf-sidebar-item-parent 食べ物
+    a(href="/foods/").sf-sidebar-item-parent #[+fa_fw('chevron-right')] 食べ物
     .sf-sidebar-item-children-wrap
-      a(href="/foods/#模擬店").sf-sidebar-item-child 模擬店
-      a(href="/foods/#喫茶店").sf-sidebar-item-child 喫茶店
-      a(href="/foods/#食堂").sf-sidebar-item-child 食堂
+      .d-flex.flex-wrap
+        a(href="/foods/#模擬店").sf-sidebar-item-child.flex-auto ・ 模擬店
+        a(href="/foods/#喫茶店").sf-sidebar-item-child.flex-auto ・ 喫茶店
+        a(href="/foods/#食堂").sf-sidebar-item-child.flex-auto ・ 食堂
     hr
-    a(href="/goods/").sf-sidebar-item-small グッズ
-    a(href="/events/invitedgames/").sf-sidebar-item-small 招待試合
-    a(href="/others/").sf-sidebar-item-small その他
+    a(href="/goods/").sf-sidebar-item-small #[+fa_fw('chevron-right')] グッズ
+    a(href="/events/invitedgames/").sf-sidebar-item-small #[+fa_fw('chevron-right')] 招待試合
+    a(href="/others/").sf-sidebar-item-small #[+fa_fw('chevron-right')] 地図 ･ 壁紙
 
-    button(type="button").sidebar_closer.btn.btn-outline-warning.btn-block.d-lg-none 閉じる
+    button(type="button").sidebar_closer.btn.btn-outline-warning.btn-block.d-lg-none × 閉じる ×

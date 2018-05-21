@@ -20,7 +20,7 @@ workboxSW.precache([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "020cf0c45a89d821d49aa91c30e616f9"
+    "revision": "9ea14044cb249c6ae51931e2068cff65"
   },
   {
     "url": "files/fonts/mgenplus-c-bold.woff2",
@@ -159,16 +159,40 @@ workboxSW.precache([
     "revision": "b2a04202176c5f37be8d18c8523c1900"
   },
   {
-    "url": "files/images/MAP.png",
-    "revision": "091fb5b5d80de148a0ce74530758f2a0"
+    "url": "files/images/map/i_dustbox.png",
+    "revision": "6856faab4aa38aec0dbf858e9ef5cae9"
   },
   {
-    "url": "files/images/MAP.svg",
-    "revision": "e63851f3f95f70adb10b999c2ce43bba"
+    "url": "files/images/map/i_dustbox.svg",
+    "revision": "1db91cb5cd4e597cfdd86a5d6c44932a"
   },
   {
-    "url": "files/images/MAP720.png",
-    "revision": "2e80bdfb583362df7be3b64763fd973d"
+    "url": "files/images/map/i_dustbox720.png",
+    "revision": "9e38797e38d24c72bc5fa4a6da4d1fec"
+  },
+  {
+    "url": "files/images/map/i_u_uchiwa.png",
+    "revision": "9a98ab645410d7b0fac6dbe06afc3327"
+  },
+  {
+    "url": "files/images/map/i_u_uchiwa.svg",
+    "revision": "fc1bdebd9bc45b5bb8759482852ebe2f"
+  },
+  {
+    "url": "files/images/map/i_u_uchiwa720.png",
+    "revision": "71dc6bcfa6e0fa81874aec984ae36b30"
+  },
+  {
+    "url": "files/images/map/MAP.png",
+    "revision": "5aff70dbc2530b9dcdad7ce23a8f34f9"
+  },
+  {
+    "url": "files/images/map/MAP.svg",
+    "revision": "3ff4d99208e990ef02dd09ced5af9bb7"
+  },
+  {
+    "url": "files/images/map/MAP720.png",
+    "revision": "6b8ab9afcb98616f6fedfbc2618e8a88"
   },
   {
     "url": "files/images/navbg.png",
@@ -264,7 +288,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "d9ec4476495b8f1f78dc1532643d3aef"
+    "revision": "f7236d8b30404ce6cd635dbcf65a1d7f"
   },
   {
     "url": "manifest.json",
