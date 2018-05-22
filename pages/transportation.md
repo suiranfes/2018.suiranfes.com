@@ -18,12 +18,16 @@ layout: article
 大変便利でお得です。ぜひご利用ください。
 
 ### 乗り方
-
 遊園地のアトラクションなどと同じように、1列に順番で並んでお待ちいただきます。  
 状況によっては積み残しが発生し、1便後になってしまう場合もあります。ご了承ください。
 
 高高からの帰りのバスの待機列はアーチの手前にあります。  
+
+<div class="clearfix"></div>
+
 <span class="maqz maqz-img-wrap-dark float-right">![バス待機列](files/images/wait4bushere720.png)</span>
+
+<div class="clearfix"></div>
 
 ### 発車予定時刻表
 

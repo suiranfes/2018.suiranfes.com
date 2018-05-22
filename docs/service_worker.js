@@ -203,6 +203,38 @@ workboxSW.precache([
     "revision": "9a1f7f54b0c5264861058956af4bfdc4"
   },
   {
+    "url": "files/images/papers/flier.png",
+    "revision": "41547cfdef1059601b1eccfd7c2b0be7"
+  },
+  {
+    "url": "files/images/papers/flier720.png",
+    "revision": "c39bfa97ed07c42dbf5453b96cbbfb6d"
+  },
+  {
+    "url": "files/images/papers/poster_with_typespng.png",
+    "revision": "c4c73fd596f78928c97597713d2e08e5"
+  },
+  {
+    "url": "files/images/papers/poster_with_typespng720.png",
+    "revision": "2a860afe831f4d54e6d8f109c6a2be52"
+  },
+  {
+    "url": "files/images/papers/sf66poster1500.png",
+    "revision": "78e038b847b45983af21ed41efb6c085"
+  },
+  {
+    "url": "files/images/papers/sf66poster1500720.png",
+    "revision": "acb70b89cc16a41910c3d0dde0def977"
+  },
+  {
+    "url": "files/images/papers/sf66poster1920.png",
+    "revision": "757eb6f8881ec170b8c64f0a96086507"
+  },
+  {
+    "url": "files/images/papers/sf66poster1920720.png",
+    "revision": "bdbc581800c92da2316d4c7063a026a9"
+  },
+  {
     "url": "files/images/southjhs_bus.jpg",
     "revision": "5124b1622814cfbc5d88e585bb519aa8"
   },
@@ -288,7 +320,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "f7236d8b30404ce6cd635dbcf65a1d7f"
+    "revision": "5d7c5ad36c2de57cd6ab25f5ac769db5"
   },
   {
     "url": "manifest.json",
