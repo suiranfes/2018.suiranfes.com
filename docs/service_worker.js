@@ -1,6 +1,6 @@
 importScripts('/workbox-sw.js')
 
-workboxSW.precache([
+workbox.precache([
   {
     "url": "assets/main.js",
     "revision": "f08f6b57bad5229bf93a4ddc5fcde60f"
@@ -319,11 +319,15 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "f8a41cccb63a89162fa9bc8cebd3d60b"
+    "revision": "ad4036ef8643cc4db39dacd8f96cb8ca"
   },
   {
     "url": "manifest.json",
     "revision": "3a9b843ad4eb52464a5e0628d9d82372"
+  },
+  {
+    "url": "service_worker.js",
+    "revision": "d77fd6954443c74e5d23da4fc4ab7661"
   },
   {
     "url": "workbox-sw.js",
