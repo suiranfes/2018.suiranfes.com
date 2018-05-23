@@ -13,6 +13,7 @@ module.exports = (htm, urlprefix) => {
   $('img[src^="/"]').attr( 'src', function(i, el){ return `${urlprefix}${$(this).attr('src')}` })
   $('img[src^="files/"]').attr( 'src', function(i, el){ return `${urlprefix}/${$(this).attr('src')}` })
   $('table').addClass('table table-sm table-bordered')
+  $('blockquote').addClass('blockquote')
   $('a[href^="http"], a[href^="//"]').append(fontawesome.icon({ prefix: "fas", iconName: "external-link-alt" },{classes:['fa-fw']}).html[0]).attr({target:'_blank', rel:'noopener'})
 
   return $('body').html()
