@@ -1,3 +1,3 @@
 importScripts('{path}')
 
-workboxSW.precache([])
+workbox.precache([])
