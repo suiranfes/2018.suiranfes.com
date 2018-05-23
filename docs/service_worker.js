@@ -1,6 +1,5 @@
 importScripts('/workbox-sw.js')
 
-const workboxSW = new WorkboxSW()
 workboxSW.precache([
   {
     "url": "assets/main.js",
