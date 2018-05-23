@@ -1,3 +1,3 @@
 importScripts('{path}')
 
-workbox.precache([])
+workbox.precaching.precacheAndRoute([])

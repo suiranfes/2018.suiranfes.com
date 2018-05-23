@@ -11,7 +11,7 @@ const del = require('rimraf')
 const fm = require('front-matter')
 const crypto = require('crypto')
 const join = path.join
-const swBuild = require('workbox-build')
+const workboxBuild = require('workbox-build')
 const exec = require('child_process').exec
 const minimist = require('minimist')
 const merge2 = require('merge2')
@@ -421,7 +421,7 @@ gulp.task('make-sw', (cb) => {
 
     fs.createReadStream(workboxSWSrcPath).pipe(fs.createWriteStream(workboxSWDestPath))
     fs.createReadStream(workboxSWSrcMapPath).pipe(fs.createWriteStream(workboxSWDestMapPath))
-
+    /*
     const updateUrl = (manifestEntries) => manifestEntries.map((entry) => {
     if (entry.url.startsWith(buildPrefix)) {
         const regex = new RegExp(buildPrefix, 'g')
@@ -431,19 +431,19 @@ gulp.task('make-sw', (cb) => {
     })
 
     config.manifestTransforms = [updateUrl]
-
-    swBuild.injectManifest(config).then(() => {
-    const wbSwRegex = /{path}/g
-    fs.readFile(config.swDest, 'utf8', (err, data) => {
-        if (err) {
-        throw err
-        }
-        const swFileContents = data.replace(wbSwRegex, workboxSWWrite)
-        fs.writeFile(config.swDest, swFileContents, () => {
-        $.util.log($.util.colors.green(`✔ service_worker.js`)); cb()
-        cb()
+    */
+    workboxBuild.injectManifest(config).then(() => {
+        const wbSwRegex = /{path}/g
+        fs.readFile(config.swDest, 'utf8', (err, data) => {
+            if (err) {
+                throw err
+            }
+            const swFileContents = data.replace(wbSwRegex, workboxSWWrite)
+            fs.writeFile(config.swDest, swFileContents, () => {
+                $.util.log($.util.colors.green(`✔ service_worker.js`)); cb()
+                cb()
+            })
         })
-    })
     })
 })
 
