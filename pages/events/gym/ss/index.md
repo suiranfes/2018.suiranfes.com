@@ -2,6 +2,7 @@
 title: SUIRAN STATION
 layout: event-index
 query:
+  place: 第一体育館
   keyword: ['SUIRAN STATION']
 ---
 

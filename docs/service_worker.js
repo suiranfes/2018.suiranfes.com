@@ -320,7 +320,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "5d7c5ad36c2de57cd6ab25f5ac769db5"
+    "revision": "a0d0d327f4aa1df94a8aae14a4abbeff"
   },
   {
     "url": "manifest.json",
