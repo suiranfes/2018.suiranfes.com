@@ -601,7 +601,7 @@ gulp.task('watcher',
 )
 
 gulp.task('watch', (cb) => {
-    gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*'], gulp.series('watcher', 'server',(cb)=>{cb()}))
+    gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*', './scripts/**/*'], gulp.series('watcher', 'server',(cb)=>{cb()}))
     gulp.watch(['files/**/*', './.config/**/*'], gulp.series('watcher', 'prebuild-files',(cb)=>{cb()}))
 })
 
@@ -625,7 +625,7 @@ gulp.task('local-server',
     gulp.series(
         'register',
         'config', 'debug-override',
-        'core-with-pf',
+        'core',
         gulp.parallel('connect', 'watch'),
         (cb) => { cb() } 
     )

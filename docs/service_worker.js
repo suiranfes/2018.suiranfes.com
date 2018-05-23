@@ -19,7 +19,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "c03e71cb898c87fbcb96f4c3c0d14672"
+    "revision": "7837f068cb680e11d53f81feca160bfe"
   },
   {
     "url": "files/fonts/mgenplus-c-bold.woff2",
@@ -319,7 +319,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "info.json",
-    "revision": "d791fc2c0160f4187ef35934b9abb647"
+    "revision": "b26a6470f7d29ff9aa01ff0aa6d36115"
   },
   {
     "url": "manifest.json",
