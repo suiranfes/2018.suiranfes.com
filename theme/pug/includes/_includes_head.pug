@@ -1,8 +1,8 @@
 script(src=`${site.url.path}/assets/main.min.js`)
 link(href=`${site.url.path}/assets/style.min.css`, rel="stylesheet")
 
-.
-  <script class='pjax-reload'>
+script(class='pjax-reload')
+  :uglify-js
     var disqus_config = function () {
       this.page.url = "#{site.url.scheme}://#{site.url.host}#{site.url.path}#{page.meta.permalink}";
       this.page.identifier = "#{site.url.host}#{site.url.path}#{page.meta.permalink}";
@@ -30,5 +30,3 @@ link(href=`${site.url.path}/assets/style.min.css`, rel="stylesheet")
         console.log('Service Workerを登録できませんでした: ', err);
       });
     }
-  // twbs/bootstrap build/sw.jsより借用
-  </script>

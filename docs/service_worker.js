@@ -3,23 +3,23 @@ importScripts('/workbox-sw.js')
 workboxSW.precache([
   {
     "url": "assets/main.js",
-    "revision": "d54aed18ebcfed7a724a8b7924a883e2"
+    "revision": "f08f6b57bad5229bf93a4ddc5fcde60f"
   },
   {
     "url": "assets/main.min.js",
-    "revision": "2c7815c1ccbfc1b461dc86815bac1f59"
+    "revision": "ceafeef9fbfcd753a045a4ff7b84fc04"
   },
   {
     "url": "assets/pjax-api.js",
-    "revision": "d37e2acde95fd4b351b5601739e2ebd3"
+    "revision": "8e170c2081aec2bbf5ddabbcfdb510ec"
   },
   {
     "url": "assets/pjax-api.min.js",
-    "revision": "612567015eac48767c30612a497aca3a"
+    "revision": "d39316c1fa80d4b0e8b9ed6c239747e1"
   },
   {
     "url": "assets/style.min.css",
-    "revision": "9ea14044cb249c6ae51931e2068cff65"
+    "revision": "9f51de2fb8ef9c2ff8bccfc9f8600ffa"
   },
   {
     "url": "files/fonts/mgenplus-c-bold.woff2",
@@ -319,7 +319,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "582ee425add7b36a709df02e842d9893"
+    "revision": "bf633366df7492ccc923a87c6f9bc39d"
   },
   {
     "url": "manifest.json",
