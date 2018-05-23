@@ -1,4 +1,4 @@
-self.importScripts('/workbox-sw.js')
+importScripts('/workbox-sw.js')
 
 const workboxSW = new WorkboxSW()
 workboxSW.precache([
@@ -320,7 +320,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "a0d0d327f4aa1df94a8aae14a4abbeff"
+    "revision": "582ee425add7b36a709df02e842d9893"
   },
   {
     "url": "manifest.json",
