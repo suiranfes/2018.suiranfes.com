@@ -19,7 +19,7 @@ workboxSW.precache([
   },
   {
     "url": "assets/style.min.css",
-    "revision": "9f51de2fb8ef9c2ff8bccfc9f8600ffa"
+    "revision": "cb2c927f92c26b593bacd17c429ef09e"
   },
   {
     "url": "files/fonts/mgenplus-c-bold.woff2",
@@ -319,7 +319,7 @@ workboxSW.precache([
   },
   {
     "url": "info.json",
-    "revision": "bf633366df7492ccc923a87c6f9bc39d"
+    "revision": "f8a41cccb63a89162fa9bc8cebd3d60b"
   },
   {
     "url": "manifest.json",

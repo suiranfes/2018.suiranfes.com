@@ -99,9 +99,13 @@ block main
 
 mixin article(thispage)
   - let since = moment(thispage.attributes.since)
+  - let until = moment(thispage.attributes.until)
   article.event
     div.event-time
-      | #{since.format('LT')} 
+      div.event-since= since.format('LT')
+      div.event-until
+        | - #{until.format('LT')}
+    div.event-angle
       +fa_fw('angle-double-right')
     h3.event-title
       | #{thispage.attributes.title} 
