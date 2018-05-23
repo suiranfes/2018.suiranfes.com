@@ -319,15 +319,11 @@ workbox.precache([
   },
   {
     "url": "info.json",
-    "revision": "ad4036ef8643cc4db39dacd8f96cb8ca"
+    "revision": "c6faa00242dfc5e33d87b5ba380cc962"
   },
   {
     "url": "manifest.json",
     "revision": "3a9b843ad4eb52464a5e0628d9d82372"
-  },
-  {
-    "url": "service_worker.js",
-    "revision": "d77fd6954443c74e5d23da4fc4ab7661"
   },
   {
     "url": "workbox-sw.js",
