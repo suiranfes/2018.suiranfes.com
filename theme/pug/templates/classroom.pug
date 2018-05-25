@@ -17,12 +17,14 @@ block main
                 +panteneBadge(page.attributes.hosttype)
             .container-fluid.mt-2
               p= page.attributes.description ? page.attributes.description : ''
+              hr
               p.mb-0
                 b 教室: 
                 | #{page.attributes.position[0]}-#{page.attributes.position[1]}
                 br
                 b 団体: 
                 | #{page.attributes.host}
+              hr
           if(headings.length > 1)
             #article_sidenav.my-2.p-3.bg-light
               +toc( headings, 2, "ul", "list-unstyled ml-3 page-index")
