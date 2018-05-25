@@ -1,0 +1,43 @@
+extends ./default.pug
+
+block title
+  title #{page.attributes.title} - #{site.name}
+
+block main
+  #main
+    - let mtime = new Date(page.meta.mtime)
+    .row.mr-0.h-100
+      +panteneMenu(page.attributes.position)
+      article.col-12.col-lg-7.col-xl-8.order-0.order-lg-2.py-5.mr-0
+        .container-fluid
+          header
+            h1.p-2
+              | #{page.attributes.title} 
+              small
+                +panteneBadge(page.attributes.hosttype)
+            .container-fluid.mt-2
+              p= page.attributes.description ? page.attributes.description : ''
+              p.mb-0
+                b 教室: 
+                | #{page.attributes.position[0]}-#{page.attributes.position[1]}
+                br
+                b 団体: 
+                | #{page.attributes.host}
+          if(headings.length > 1)
+            #article_sidenav.my-2.p-3.bg-light
+              +toc( headings, 2, "ul", "list-unstyled ml-3 page-index")
+          section.pt-2.pb-4
+            .container-fluid
+              if(page.attributes.links)
+                div.mb-2.p-0
+                  each link in page.attributes.links
+                    a(href=link.url).btn.btn-info.btn-sm= link.title
+            .container-fluid!= main_html
+          footer
+            .container-fluid
+              small.text-muted
+                ul.list-unstyled
+                  li
+                    +fa_fw("clock")
+                    time(datetime=page.meta.mtime) #{mtime.getFullYear()}年#{mtime.getMonth()+1}月#{mtime.getDate()}日 #{`00${mtime.getHours()}`.slice(-2)}:#{`00${mtime.getMinutes()}`.slice(-2)}
+                    |  更新

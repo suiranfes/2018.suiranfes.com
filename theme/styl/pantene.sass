@@ -1,0 +1,31 @@
+.sf-pantenemenu-grid-wrap
+  display: grid
+  grid-auto-flow: column
+  grid-template-columns: repeat(3, 1fr)
+  grid-template-rows: repeat(2, 3em) repeat(2, 2em) repeat(4, 3em) repeat(2, 2em) repeat(3, 3em)
+  grid-gap: 3.5px 5px
+  padding: 5px
+
+  @include media-breakpoint-up(lg)
+    height: 100%
+    grid-template-rows: repeat(2, 1fr) repeat(2, 2em) repeat(4, 1fr) repeat(2, 2em) repeat(3, 1fr)
+  
+  .sf-pantenemenu-grid-item
+    @extend .rounded
+    transition: all .3s ease
+
+    &:hover
+      text-decoration: none
+
+    &.sf-pantenemenu-grid-item
+      position: relative
+
+      > .sf-pm-posi
+        position: absolute
+        top: 3.5px
+        left: 3.5px
+  
+    &.sf-pantenemenu-grid-item-stairs
+      display: grid
+      grid-template-columns: repeat(7, 1fr)
+      grid-template-rows: 100%

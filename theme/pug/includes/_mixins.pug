@@ -65,3 +65,73 @@ mixin embed_youtube_autoplay(vid)
   +embed_video(`https://www.youtube.com/embed/${vid}?autoplay=1&controls=2&modestbranding=1&rel=0`)
 
 //- https://developers.google.com/youtube/player_parameters?hl=ja
+
+
+-
+  function panteneColors(type){
+    return {
+      class: 'info',
+      club: 'success',
+      others: 'dark',
+      staff: 'primary'
+    }
+  }
+
+mixin panteneMenu(currentPositon)
+  .col-12.col-lg-5.col-xl-4.order-1.h-100
+    .sf-pantenemenu-grid-wrap.bg-light
+      - let n = 1
+      while n <= 3
+        - let m = 1
+        while m <= 9
+          - const thisroom = pages.find((cpage) => { return cpage.attributes.layout == "classroom" && cpage.attributes.position && cpage.attributes.position[0] == n && cpage.attributes.position[1] == m })
+          - const color = panteneColors()[thisroom.attributes.hosttype]
+          a.sf-pantenemenu-grid-item.sf-pantenemenu-grid-item-classroom.d-flex.flex-column.border(href=thisroom.meta.permalink class=`${!!currentPositon && currentPositon[0] == n && currentPositon[1] == m ? `bg-white text-${color}` : `bg-${color} text-white`} border-${color}`)
+            .lh-12.small.m-0.sf-pm-posi #{n}-#{m}
+            .lh-12.text-center.w-100.mt-auto= thisroom.attributes.short_name
+            .lh-12.text-center.w-100.mb-auto.small= thisroom.attributes.host
+
+          case m
+            when 2
+              +panteneMenuStairs()
+              case n
+                when 1
+                when 3
+                  +panteneMenuToilet('female')
+                when 2
+                  +panteneMenuToilet('male')
+            when 6
+              +panteneMenuStairs()
+              case n
+                when 2
+                when 3
+                  +panteneMenuToilet('female')
+                when 1
+                  +panteneMenuToilet('male')
+          - m = m + 1
+        - n = n + 1
+
+mixin panteneMenuStairs()
+  .sf-pantenemenu-grid-item.sf-pantenemenu-grid-item-stairs.bg-light
+    .sf-pantenemenu-stair.border.border-dark.bg-white
+    - let s = 0
+    while s < 6
+      .sf-pantenemenu-stair.border.border-dark.border-left-0.bg-white
+      - s++
+
+mixin panteneMenuToilet(sex)
+  .sf-pantenemenu-grid-item.sf-pantenemenu-grid-item-toilet.border.border-dark.bg-white.d-flex
+    case sex
+      when 'male'
+        .text-info.m-auto
+          +fa_fw('male')
+      when 'female'
+        .text-danger.m-auto
+          +fa_fw('female')
+
+mixin panteneBadge(type)
+  case type
+    when 'class': span.badge.badge-info クラス展示
+    when 'club': span.badge.badge-success 部活動展示
+    when 'others': span.badge.badge-dark その他
+    when 'staff': span.badge.badge-primary 実行委員会

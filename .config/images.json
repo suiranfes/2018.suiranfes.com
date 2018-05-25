@@ -10,6 +10,22 @@
             "sizes": [
                 {
                     "resize": {
+                        "crop": false,
+                        "upscale": false,
+                        "interlace": "line",
+                        "cover": false,
+                        "imageMagick": true
+                    },
+                    "image": {
+                        "jpegRecompress": true,
+                        "mozjpeg": ["-optimize", "-progressive"]
+                    }
+                },
+                {
+                    "rename": {
+                        "suffix": "1600"
+                    },
+                    "resize": {
                         "width": 1600,
                         "height": 1600,
                         "crop": false,
@@ -20,8 +36,7 @@
                     },
                     "image": {
                         "jpegRecompress": true,
-                        "mozjpeg": ["-optimize", "-progressive"],
-                        "concurrent": 30
+                        "mozjpeg": ["-optimize", "-progressive"]
                     }
                 },
                 {
@@ -32,7 +47,7 @@
                         "width": 720,
                         "height": 720,
                         "crop": false,
-                        "upscale": true,
+                        "upscale": false,
                         "interlace": "line",
                         "cover": false,
                         "imageMagick": true,
@@ -40,8 +55,7 @@
                     },
                     "image": {
                         "jpegRecompress": true,
-                        "mozjpeg": ["-optimize", "-progressive"],
-                        "concurrent": 30
+                        "mozjpeg": ["-optimize", "-progressive"]
                     }
                 }
             ]

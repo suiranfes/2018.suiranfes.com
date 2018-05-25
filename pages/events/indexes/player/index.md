@@ -1,4 +1,4 @@
 ---
-title: 出演者・団体で探す
+title: 出演者・団体
 layout: index
 ---

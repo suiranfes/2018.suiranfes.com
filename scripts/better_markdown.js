@@ -13,6 +13,7 @@ module.exports = (htm, urlprefix) => {
   $('div h2').removeClass('mt-5 p-2 border border-left-0 border-right-0 border-primary')
   $('div h3, div h4').removeClass('mt-4 p-1 border border-left-0 border-top-0 border-right-0 border-primary')
   $('div h5, div h6').removeClass('mt-3 p-1 border border-left-0 border-top-0 border-right-0 border-primary')
+  $('img').addClass('img-fluid')
   $('img[src^="/"]').attr( 'src', function(i, el){ return `${urlprefix}${$(this).attr('src')}` })
   $('img[src^="files/"]').attr( 'src', function(i, el){ return `${urlprefix}/${$(this).attr('src')}` })
   $('table').addClass('table table-sm table-bordered')

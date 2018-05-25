@@ -10,6 +10,8 @@ layout: article
 - 時間前に完売した場合は販売終了とさせていただきます。
 
 ## 模擬店
+<span class="maqz maqz-img-wrap-dark float-right">![クレープ](files/images/crepe720.jpg)</span>
+<span class="maqz maqz-img-wrap-dark float-right">![クレープ屋台](files/images/crepestall720.jpg)</span>
 
 - ①④ ジュース 130~160円
 - ② チョコバナナ 100円
@@ -24,6 +26,7 @@ layout: article
 - ⑪ つぶつぶアイス 300円
 
 ## 食堂
+<span class="maqz maqz-img-wrap-dark float-right">![食堂(購買)](files/images/shokudou720.jpg)</span>
 
 - チキンソースカツ丼 550円
 - ハンバーグ弁当 500円
@@ -37,6 +40,7 @@ layout: article
 - お茶 130円
 
 ## 喫茶店
+<span class="maqz maqz-img-wrap-dark float-right">![喫茶店](files/images/kissa720.jpg)</span>
 
 ### セット
 

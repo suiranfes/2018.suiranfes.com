@@ -1,4 +1,4 @@
 ---
-title: キーワードで探す
+title: キーワード
 layout: index
 ---
