@@ -1,5 +1,5 @@
 ---
-title: 'SSH: 2年1組'
+title: '――高高の中心で、SSHを叫ぶ――'
 short_name: SSH 2年
 host: 2年1組
 hosttype: class

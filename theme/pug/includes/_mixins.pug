@@ -66,19 +66,8 @@ mixin embed_youtube_autoplay(vid)
 
 //- https://developers.google.com/youtube/player_parameters?hl=ja
 
-
--
-  function panteneColors(type){
-    return {
-      class: 'info',
-      club: 'success',
-      others: 'dark',
-      staff: 'primary'
-    }
-  }
-
 mixin panteneMenu(currentPositon)
-  .col-12.col-lg-5.col-xl-4.order-1.h-lg-100
+  .col-12.col-lg-5.col-xl-4.order-1.h-lg-100.pr-0
     .sf-pantenemenu-grid-wrap.bg-light
       - let n = 1
       while n <= 3

@@ -31,3 +31,19 @@ layout: default
 
         投票場装飾という一見平凡な名前が付いていますが、それは裏切られるはずです。  
         まるで異世界のような高高の、象徴としてあなたの記憶から忘れられないものになると思います。
+
+      :md
+        ## 展示一覧
+      .sf-panteneindex
+        - let n = 1
+        while n <= 3
+          - let m = 1
+          while m <= 9
+            - const thisroom = pages.find((cpage) => { return cpage.attributes.layout == "classroom" && cpage.attributes.position && cpage.attributes.position[0] == n && cpage.attributes.position[1] == m })
+            - const color = panteneColors()[thisroom.attributes.hosttype]
+            a.sf-panteneindex-item.d-block.py-2.px-2.px-md-3(href=thisroom.meta.permalink class=`text-${color}`)
+              .lh-12.mb-1 #{n}-#{m}: #{thisroom.attributes.title} (#{thisroom.attributes.host})
+              p.lh-12.m-0.small= thisroom.attributes.description
+            - m = m + 1
+          hr
+          - n = n + 1

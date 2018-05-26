@@ -132,6 +132,17 @@ block functions
       }
       if(!is_subcall) sidebarHTML = renderSidebar(page.meta.src)
 
+  block pantenecolers
+    -
+      function panteneColors(){
+        return {
+          class: 'info',
+          club: 'success',
+          others: 'dark',
+          staff: 'primary'
+        }
+      }
+
 block summary
   //-
     function img_weserv(src){
