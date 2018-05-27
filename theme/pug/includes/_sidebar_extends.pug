@@ -38,5 +38,9 @@ block body
     a(href="/goods/").sf-sidebar-item-small #[+fa_fw('chevron-right')] グッズ
     a(href="/events/invitational_matches/").sf-sidebar-item-small #[+fa_fw('chevron-right')] 招待試合
     a(href="/others/").sf-sidebar-item-small #[+fa_fw('chevron-right')] 地図 ･ 壁紙
-
+    div.social-accounts.d-flex.flex-wrap.justify-content-around
+      a(href="https://twitter.com/suiranfes").btn.btn-info.flex-fill.m-1
+        +fa_fw('twitter', 'fab')
+      a(href="https://www.youtube.com/user/suiranfestival").btn.btn-danger.flex-fill.m-1
+        +fa_fw('youtube', 'fab')
     button(type="button").sidebar_closer.btn.btn-outline-warning.btn-block.d-lg-none × 閉じる ×
