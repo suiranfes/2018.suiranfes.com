@@ -13,18 +13,18 @@ description: 群馬県立高崎高校文化祭「翠巒祭」の2018年版公式
       a(href="/transportation/").carousel-item.active
         img(src="/files/images/top/car_1_transportation.jpg" alt="slide").d-block.w-100
         .carousel-caption.d-none.d-sm-block.sf-text-shadow
-          h3.font-weight-bold バスなど 来場方法
-          p 高崎駅から無料シャトルバス運行！
+          h3.font-weight-bold バス<small>など 来場方法</small>
+          p 南小学校前(高崎駅西口至近)から無料シャトルバス運行！
       a(href="/events/").carousel-item
         img(src="/files/images/top/car_2_event.jpg" alt="slide").d-block.w-100
         .carousel-caption.d-none.d-sm-block.sf-text-shadow
           h3.font-weight-bold イベント
-          p ミスコン(男子校なのに)、クイズ大会、音楽部発表、ライブ etc...
+          p ミスコン(男子校なのに!?)、クイズ大会、筋肉、音楽部発表、ライブ etc...
       a(href="/foods/").carousel-item
         img(src="/files/images/top/car_3_stalls.jpg" alt="slide").d-block.w-100
         .carousel-caption.d-none.d-sm-block.sf-text-shadow
           h3.font-weight-bold 食べ物
-          p 焼きまんじゅう、焼きそば、チュロス、アイス、弁当 etc...
+          p 焼きまんじゅう、タピオカ、チュロス、アイス、弁当 etc...
       a(href="/classroom/").carousel-item
         img(src="/files/images/top/car_4_classroom.jpg" alt="slide").d-block.w-100
         .carousel-caption.d-none.d-sm-block.sf-text-shadow
@@ -39,16 +39,22 @@ description: 群馬県立高崎高校文化祭「翠巒祭」の2018年版公式
 
 .d-block.d-md-none.sf-top-images
   a(href="/transportation/" style="background-image: url('/files/images/top/car_1_transportation.jpg')").sf-top-images-item
-    h4 バスなど 来場方法
+    h4 バス<small>など 来場方法</small>
+    p.mb-0 南小学校前(高崎駅西口至近)から無料シャトルバス運行！
   a(href="/events/" style="background-image: url('/files/images/top/car_2_event.jpg')").sf-top-images-item
     h4 イベント
+    p.mb-0 ミスコン(男子校なのに!?)、筋肉、音楽部発表、ライブ etc...
   a(href="/foods/" style="background-image: url('/files/images/top/car_3_stalls.jpg')").sf-top-images-item
     h4 食べ物
+    p.mb-0 焼きまんじゅう、タピオカ、チュロス、アイス、弁当 etc...
   a(href="/classroom/" style="background-image: url('/files/images/top/car_4_classroom.jpg')").sf-top-images-item
     h4 一般展示
+    p.mb-0 専門的で楽しい部活動展示や、気軽に遊べるクラス展示。通信制も校舎内にて。
 
 .container-fluid
-  a(href="https://docs.google.com/forms/d/e/1FAIpQLSdXdcOhDEhX2JMvT0vHGikicRxgIGd5_m4ERE9PBIOPwD6u4Q/viewform").btn.btn-info.d-block.mt-3 校内放送 お便り･曲リクエスト
+  a(href="https://docs.google.com/forms/d/e/1FAIpQLSdXdcOhDEhX2JMvT0vHGikicRxgIGd5_m4ERE9PBIOPwD6u4Q/viewform").btn.btn-info.d-block.mt-3
+    +fa_fw('broadcast-tower')
+    | 校内放送 お便り･曲リクエスト
   div.d-flex.flex-wrap.justify-content-around.mt-3
     a(href="https://twitter.com/suiranfes" target="_blank").btn.btn-outline-info.flex-fill.m-1
       +fa_fw('twitter', 'fab')
