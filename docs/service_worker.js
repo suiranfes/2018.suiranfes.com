@@ -59,7 +59,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "info.json",
-    "revision": "3cad338f940f41ba4288dae5b9d1d283"
+    "revision": "c9fc0906c0626ff0aa103cefe14484c6"
   },
   {
     "url": "manifest.json",
