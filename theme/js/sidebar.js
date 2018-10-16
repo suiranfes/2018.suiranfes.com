@@ -1,7 +1,5 @@
 var $ = require('jquery')
 
-let sidebar_is = false
-
 function sidebar_show(){
     if(window.innerWidth > 992) return false
     $('#nav, #main, #footer').addClass('filter-brightness')

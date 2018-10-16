@@ -1,5 +1,3 @@
-const openCommand = 'code-insiders'
-
 // npm require
 const gulp = require('gulp')
 const extend = require('extend')
@@ -7,36 +5,31 @@ const fs = require('fs')
 const util = require('util')
 const promisify = util.promisify
 const path = require('path')
-const del = require('rimraf')
-const fm = require('front-matter')
-const crypto = require('crypto')
-const join = path.join
+const del = require('del')
 const workboxBuild = require('workbox-build')
-const exec = require('child_process').exec
 const minimist = require('minimist')
-const merge2 = require('merge2')
-const mkdirp = require('mkdirp')
 const pump = require('pump')
-const moment = require('moment')
-const glob = require('glob')
 const request = require('request')
-const numeral = require('numeral')
-const inquirer = require('inquirer')
-const Twitter = require('twitter')
-const summaly = require('summaly').default
-const ss = require('simple-statistics')
-const fontawesome = require("@fortawesome/fontawesome")
-const faSolid = require("@fortawesome/fontawesome-free-solid")['default']
-const faRegular = require("@fortawesome/fontawesome-free-regular")['default']
-const faBrands = require("@fortawesome/fontawesome-free-brands")['default']
-fontawesome.library.add(faSolid, faRegular, faBrands)
+const es = require('event-stream')
+const htmlmin = require("html-minifier").minify
+const pug = require('pug')
+const mkdirp = require('mkdirp')
+const betterMarkdown = require('./scripts/better_markdown')
+
+const fontawesome = require("@fortawesome/fontawesome-svg-core")
+fontawesome.library.add(require("@fortawesome/free-solid-svg-icons").fas, require("@fortawesome/free-regular-svg-icons").far, require("@fortawesome/free-brands-svg-icons").fab)
 $ = require('gulp-load-plugins')()
+
+// const exec = require('child_process').exec
+// const join = path.join
+// const moment = require('moment')
+// const numeral = require('numeral')
+// const inquirer = require('inquirer')
+// const summaly = require('summaly').default
 
 // promisify
 
 const writeFile = promisify(fs.writeFile)
-const readFile = promisify(fs.readFile)
-const get = promisify(request.get)
 
 // arg
 const argv = minimist(process.argv.slice(2))
@@ -62,13 +55,10 @@ let site = extend(true,
     require('./.config/images.json')
 )
 const workboxSWSrcPath = require.resolve('workbox-sw')
-let theme_pug = {}
-theme_pug.script = fs.readFileSync('theme/pug/includes/_script.pug', {encoding: 'utf8'})
-theme_pug.mixin = fs.readFileSync('theme/pug/includes/_mixins.pug', {encoding: 'utf8'})
 
-let counts = {}
+let temp_dir = 'dist/cache/' // 末尾のスラッシュ必要
 
-let temp_dir = 'theme/pug/temp/' // 末尾のスラッシュ必要
+const urlPrefix = `${site.url.scheme}://${site.url.host}${site.url.path}`
 
 let src = {
    'everypug': ['theme/pug/**/*.pug','./.temp/**/*.pug'],
@@ -92,15 +82,7 @@ let dests = {
     return fontawesome.icon({ prefix: ( prefix || "fas" ), iconName: icon },option).html[0]
 }*/
 
-function existFile(file) {
-    try {
-        fs.statSync(file)
-        return true
-    } catch(e) {
-        if(e.code === 'ENOENT') return false
-    }
-}
-
+/*
 function escape_html(val) {
     if(typeof val !== 'string'){ return val }
     return val.replace(/[&'`"<>]/g, function(match) {
@@ -114,120 +96,47 @@ function escape_html(val) {
         }[match]
     })
 }
+*/
 
-function getHash(data, a, b, c){
-    const hashv = crypto.createHash(a)
-    hashv.update(data, b)
-    return hashv.digest(c)
-}
 
-async function register_pages(){
-    let promises = []
-    const srcs = glob.sync(src.pages)
-    for(p = 0; p < srcs.length; p++){
-        promises.push(
-            doit(srcs[p], p, srcs, path.parse(site.pages_src.path))
-        )
-    }
-    let result = await Promise.all(promises)
-    result = result.filter( (el, i, arr) => !!el )
-    return result
-    async function doit(val, i, arr, srcpath){
-        let page = {}
-        const src = path.parse(val)
-
-        if(src.name == "sidebar") return false   // - - - - - - - -  名前がsidebarのとき弾く */ 
-        let subdir = src.dir.replace(srcpath.base, '')
-        if(subdir.indexOf('/') == 0) subdir = subdir.slice(1)
-        if ( !subdir ) subdir = ''
-
-        let file = fs.readFileSync( val, 'utf-8' )
-        page = extend(true,page,fm(file))
-
-        page.meta = {}
-        page.meta.src = src
-        page.meta.src.subdir = subdir
-
-        let md5hash = crypto.createHash('md5')
-        md5hash.update(file, 'binary')
-        page.meta.md5 = getHash(file, 'md5', 'binary', 'hex')
-        page.meta.sha384 = getHash(file, 'sha384', 'binary', 'base64')
-        page.stats = fs.statSync( val )
-
-        page.body = page.body.replace(/\r\n?/gi,"\n") // 文字コードをLFにそろえる
-        delete page.frontmatter
-
-        page.attributes.title = page.attributes.title || page.meta.srcname || null
-        page.attributes.description = page.attributes.description || ""
-        page.meta.mtime = (new Date(page.attributes.mtime || page.attributes.date || page.stats.mtime)).toJSON()
-        page.meta.birthtime = (new Date(page.attributes.birthtime || page.stats.birthtime)).toJSON()
-
-        page.meta.thumbnail = page.attributes.thumbnail ? path.parse(page.attributes.thumbnail) : null
-
-        if( page.attributes.permalink === undefined || page.attributes.permalink === null ) {
-            if(subdir != '') page.meta.permalink = `/${subdir}/${page.meta.src.name}`
-            else page.meta.permalink = `/${page.meta.src.name}`
-        } else { page.meta.permalink = page.attributes.permalink }
-        if( page.attributes.layout === undefined || page.attributes.layout === null ) page.attributes.layout = 'default'
-        if( page.attributes.published === undefined || page.attributes.published === null ) page.attributes.published = true
-        if( page.attributes.draft === undefined || page.attributes.draft === null ) page.attributes.draft = false
-        if( page.meta.permalink.indexOf('/') != 0 ) page.meta.permalink = '/' + page.meta.permalink
-        if( page.meta.permalink.lastIndexOf('index') == page.meta.permalink.length - 5 && page.meta.permalink.indexOf('index') != -1 ) page.meta.permalink = page.meta.permalink.slice(0,-5)
-        else if( page.meta.permalink.lastIndexOf('/') != page.meta.permalink.length - 1 ) page.meta.permalink = page.meta.permalink + '/'
-        if( typeof page.attributes.keywords === 'string' ) page.attributes.keywords = page.attributes.keywords.split(' ')
-        if( typeof page.attributes.players === 'string' ) page.attributes.players = page.attributes.players.split(' ')
-        if( typeof page.attributes.keyword === 'string' ){
-            page.attributes.keywords = page.attributes.keyword.split(' ')
-            delete page.attributes.keyword
-        }
-        if( typeof page.attributes.player === 'string' ){
-            page.attributes.players = page.attributes.player.split(' ')
-            delete page.attributes.player
-        }
-        return page
-    }
-}
-
-function register_manifest(){
-    let icons = []
-    for (let i = 0 ; i < site.icons.length ; i++) {
-        let icon = site.icons[i]
-        icon.src = site.url.path + icon.path
-        icons.push(icon)
-    }
-    let manifest = {
-        'name': site.name,
-        'short_name': site.short_name,
-        'icons': icons,
-        'start_url': site.url.path,
-        'theme_color': site.theme_color.primary,
-        'background_color': site.theme_color.primary
-    }
-    manifest = extend(true,manifest,site.manifest)
-    return manifest
-}
-
-let manifest = {}
-let pages = []
+let manifest = {},
+    pages = [],
+    base,
+    pugfilters
 
 gulp.task('register', async cb => {
+    const rf = promisify(fs.readFile)
     manifest = {}
     pages = []
     ytthumbs = []
+    pugfilters = require('./pugfilters.js')
+    manifest = require('./scripts/builder/registerer/manifest')(site)
+    pages = await require('./scripts/builder/registerer/pages')(site, src, urlPrefix)
+    const theme_pug = {
+            script: await rf('theme/pug/includes/_script.pug', {encoding: 'utf8'}),
+            mixin: await rf('theme/pug/includes/_mixins.pug', {encoding: 'utf8'})
+        }
+    base = {
+            update: (new Date()),
+            site,
+            package,
+            pages,
+            manifest,
+            messages,
+            require,
+            theme_pug,
+            urlPrefix,
+            DEBUG
+    }
 
-    manifest = register_manifest()
-    pages = await register_pages()
-    theme_pug.script = fs.readFileSync('theme/pug/includes/_script.pug', {encoding: 'utf8'})
-    theme_pug.mixin = fs.readFileSync('theme/pug/includes/_mixins.pug', {encoding: 'utf8'})
     cb()
 })
-
 
 gulp.task('config', (cb) => {
     let resultObj = { options: '' }
     resultObj.timestamp = (new Date()).toJSON()
     resultObj = extend(true,resultObj, { 'pages' : pages })
-    mkdirp.sync(path.parse(dests.info).dir)
+    require('mkdirp').sync(path.parse(dests.info).dir)
     return writeFile( dests.info, JSON.stringify( resultObj ))
     .then(
         () => { $.util.log($.util.colors.green(`✔ info.json`)) },
@@ -235,49 +144,191 @@ gulp.task('config', (cb) => {
     )
 })
 
-gulp.task('pug', (cb) => {
-    let works = []
-    mkdirp.sync(temp_dir)
-    let stream = merge2()
-    for (let i = 0; i < pages.length; i++) {
-        const page = pages[i]
-        const pugoptions = {
-            data: 
-                {
-                    'page': page,
-                    'site' : site,
-                    'package' : package,
-                    'pages' : pages,
-                    'manifest' : manifest,
-                    "messages": messages,
-                    "require": require,
-                    "theme_pug": theme_pug,
-                    "DEBUG": DEBUG
-                },
-            filters: require('./pugfilters.js')
-        }
+function pugit(val, options){
+    options.isSubcall = true
+    const res = pug.render(`${base.theme_pug.script}\n${base.theme_pug.mixin}\n${val}`, options)
+    return res
+}
 
+function toamp(htm, base){
+    const sizeOf = require('image-size')
+    let $ = require('cheerio').load(htm, {decodeEntities: false})
+    let promises = []
+    $('img[src]').each(function(){
+        const $el = $(this)
+        // todo
+        /*promises.push(new Promise(async (resolve) => {*/
+            let src    = $el.attr('src')
+            let alt    = $el.attr('alt')
+            let title  = $el.attr('title')
+            let id     = $el.attr('id')
+            let width  = $el.attr('width')
+            let height = $el.attr('height')
+            if( ( width === undefined || height === undefined ) && src.startsWith("files/") ){
+                const dims = sizeOf( src )
+                width = dims.width
+                height = dims.height
+                src = base.site.url.path + "/" + src
+            } else if ( ( width === undefined || height === undefined ) && src.startsWith("/files/") ){
+                const dims = sizeOf( src.slice(1) )
+                width = dims.width
+                height = dims.height
+                src = base.site.url.path + src
+                /*
+            } else if ( ( width === undefined || height === undefined ) && ( src.startsWith('http') || src.startsWith('//') ) ){
+                const url = require('url').parse(src)
+                const filename = `${url.pathname.slice(1).replace(/\//g,'-')}`.slice(-36)
+                const temppath = `${temp_dir}amp/${url.hostname}/`
+                mkdirp.sync(temppath)
+                const v = await require('./scripts/downloadTemp')(filename, src, temppath)
+                console.log(v)
+                if (!v) {
+                    console.log( `${messages.amp.invalid_imageUrl}:\n${src}` )
+                    return resolve()
+                }
+                if (!existFile(`${temppath}${filename}.${v.ext}`)) return resolve()
+                const dims = sizeOf( `${temppath}${filename}.${v.ext}` )
+                width = dims.width
+                height = dims.height
+            */
+            } else {
+                console.log( `${messages.amp.invalid_imageUrl}:\n${src}` )
+            }
+            $el.after(`<amp-img src="${src}" alt="${alt}" title="${title}" id="${id}" width="${width}" height="${height}"></amp-image>`)
+            // return resolve()
+        /*}))*/
+    })
+    /*await Promise.all(promises)*/
+    $('img').remove()
+    $('amp-img').attr('layout','responsive')
+    return $('body').html()
+}
+
+function regheadings(htm){
+    let heading_html, headings = []
+    const reg_heading = /<h([1-6])(.*?)>([^]*?)<\/h(\1)>/gi
+    while((heading_html = reg_heading.exec(htm)) !== null){
+        let heading = {},
+            idmatch = []
+        idmatch = heading_html[2].match(/id=(["'])(.*?)(\1)/)
+        classmatch = heading_html[2].match(/class=(["'])(.*?)(\1)/)
+        if(idmatch == null)
+            heading.id = null
+        else
+            heading.id = idmatch[2]
+        heading.html     = heading_html[0]
+        heading.number   = heading_html[1]
+        heading.attr     = heading_html[2]
+        heading.text     = heading_html[3]
+        if ( classmatch == null || classmatch[2].indexOf('noindex') == -1 ) headings.push(heading)
+    }
+    return headings
+}
+
+function searchSidebar(pathe){
+    let searchin
+    if(pathe.dir == "") searchin = `${pathe.dir}sidebar.pug`
+    else searchin = `${pathe.dir}/sidebar.pug`
+    if(existFile(searchin)){
+        return searchin
+    } else {
+        // const uppath = path.parse(pathe.dir)
+        // searchSidebar(uppath)
+        return "pages/sidebar.pug"
+    }
+}
+
+gulp.task('pug', async () => {
+    const stream = []
+    for (let page of pages) {
+        const puglocals = extend(true,
+            {
+                page: page,
+                filters: pugfilters,
+                //cache: true
+            }, base)
         let layout = page.attributes.layout
-        let template = ''
+        let template = '', amptemplate = ''
         if(existFile(`theme/pug/templates/${layout}.pug`)) template += `theme/pug/templates/${layout}.pug`
         else if(existFile(`theme/pug/templates/${site.default.template}.pug`)) template += `theme/pug/templates/${site.default.template}.pug`
         else throw Error('default.pugが見つかりませんでした。')
-        stream.add(
+
+        let sidebarHTML = pug.renderFile( searchSidebar(page.meta.src), puglocals)
+        puglocals.sidebarHTML = sidebarHTML
+
+        let main_html
+        switch(page.meta.src.ext){
+            case '.md':
+                main_html = require("kramed")(page.body)
+                main_html = betterMarkdown(main_html, site.url.path)
+                // main_html = maly(main_html)
+                main_html = htmlmin(main_html ,{"collapseWhitespace": true,"removeEmptyAttributes": false,"removeEmptyElements": false})
+                break
+            case '.html':
+            case '.htm':
+                main_html = htmlmin(page.body ,{"collapseWhitespace": true,"removeEmptyAttributes": false,"removeEmptyElements": false})
+                break
+            case '.pug':
+                try {
+                    main_html = pugit(page.body, puglocals)
+                } catch(e) {
+                    console.log(`Error: ${page.meta.permalink}`)
+                    throw Error(e)
+                }
+                if (page.attributes.improve) main_html = betterMarkdown(main_html, site.url.path)
+                break
+        }
+        main_html = require('./scripts/highl')(main_html)
+        puglocals.main_html = main_html
+        puglocals.headings = regheadings(main_html)
+
+        stream.push(
+        // stream.add(
             gulp.src(template)
-                .pipe($.pug(pugoptions))
+                .pipe($.pug({ locals: puglocals }))
                 .pipe($.rename(`${page.meta.permalink}index.html`))
                 .pipe(gulp.dest( dests.root ))
                 .on('end',() => {
-                    $.util.log($.util.colors.green(`✔ ${page.meta.permalink}`))
+                    // $.util.log($.util.colors.green(`✔ ${page.meta.permalink}`))
                 })
                 .on('error', (err) => {
                     $.util.log($.util.colors.red(`✖ ${page.meta.permalink}`))
-                    throw err
+                    $.util.log($.util.colors.red(err))
                 })
         )
+        /*
+         *                            AMP処理部
+         *                                                                  */
 
+        if(page.attributes.amp){
+            if(existFile(`theme/pug/templates/amp_${layout}.pug`)) amptemplate += `theme/pug/templates/amp_${layout}.pug`
+            else if(existFile(`theme/pug/templates/amp_${site.default.template}.pug`)) amptemplate += `theme/pug/templates/amp_${site.default.template}.pug`
+            else throw Error('amp_default.pugが見つかりませんでした。')
+            const newoptions = extend(true, { data: { isAmp: true, main_html: toamp(main_html, base) }}, puglocals)
+            stream.push(
+            // stream.add(
+                gulp.src(amptemplate)
+                    .pipe($.pug(newoptions))
+                    .pipe($.rename(`${page.meta.permalink}amp.html`))
+                    .pipe(gulp.dest( dests.root ))
+                    .on('end',() => {
+                        // $.util.log($.util.colors.green(`✔ ${page.meta.permalink}amp.html`))
+                    })
+                    .on('error', (err) => {
+                        $.util.log($.util.colors.red(`✖ ${page.meta.permalink}`))
+                        $.util.log($.util.colors.red(err))
+                    })
+            )
+        }
     }
-    return stream.on('end', cb)
+
+    await new Promise((res, rej) => {
+        es.merge.apply(this, stream)
+            .on('end', res)
+            .on('error', rej)
+    })
+    $.util.log($.util.colors.green(`✔ all html produced`))
+    return void(0)
 })
 
 gulp.task('css', (cb) => {
@@ -288,12 +339,24 @@ gulp.task('css', (cb) => {
         $.rename('style.min.css'),
         gulp.dest(dests.root + '/assets')
     ], (e) => {
-        if(e) $.util.log("\n" + $.util.colors.red(e))
+        if(e) $.util.log($.util.colors.red("Error(css)\n" + e))
         else $.util.log($.util.colors.green(`✔ assets/style.min.css`))
         cb()
     })
 })
 
+gulp.task('fa-css', (cb) => {
+    pump([
+        gulp.src('node_modules/@fortawesome/fontawesome-svg-core/styles.css'),
+        $.cleanCss(),
+        $.rename('fontawesome.min.css'),
+        gulp.dest(dests.root + '/assets')
+    ], (e) => {
+        if(e) $.util.log($.util.colors.red("Error(fa-css)\n" + e))
+        else $.util.log($.util.colors.green(`✔ assets/style.min.css`))
+        cb()
+    })
+})
 gulp.task('js', (cb) => {
     pump([
         gulp.src('theme/js/main.js'),
@@ -305,7 +368,7 @@ gulp.task('js', (cb) => {
         $.rename('main.min.js'),
         gulp.dest(dests.root + '/assets')
     ], (e) => {
-        if(e) { $.util.log("\n" + $.util.colors.red(e)) }
+        if(e) { $.util.log($.util.colors.red("Error(js)\n" + e)) }
         else {
             $.util.log($.util.colors.green(`✔ assets/main.js`))
             $.util.log($.util.colors.green(`✔ assets/main.min.js`))
@@ -326,13 +389,19 @@ gulp.task('copy-theme-static', (cb) => {
         gulp.dest(dests.root)
     ], cb)
 })
-gulp.task('copy-files', (cb) => {
+gulp.task('copy-bootstrapjs', (cb) => {
     pump([
-        gulp.src('dist/files/**/*'),
-        gulp.dest(dests.root + '/files')
+        gulp.src('node_modules/bootstrap/dist/js/**'),
+        gulp.dest(dests.root + '/assets')
     ], cb)
 })
-gulp.task('copy-wtfpjax', (cb) => {
+gulp.task('copy-animatecss', (cb) => {
+    pump([
+        gulp.src('node_modules/animate.css/*.css'),
+        gulp.dest(dests.root + '/assets')
+    ], cb)
+})
+gulp.task('copy-pjax', (cb) => {
     pump([
         gulp.src('node_modules/pjax-api/dist/**'),
         gulp.dest(dests.root + '/assets')
@@ -340,8 +409,14 @@ gulp.task('copy-wtfpjax', (cb) => {
 })
 gulp.task('copy-prebuildFiles', (cb) => {
     pump([
+        gulp.src('dist/files/**/*'),
+        gulp.dest(dests.root + '/files')
+    ], cb)
+})
+gulp.task('copy-files', (cb) => {
+    pump([
         gulp.src(src.files),
-        gulp.dest('./dist/files')
+        gulp.dest(dests.root + '/files')
     ], cb)
 })
 gulp.task('copy-f404', (cb) => {
@@ -352,46 +427,101 @@ gulp.task('copy-f404', (cb) => {
     ], cb)
 })
 
-gulp.task('image-prebuildFiles', (cb) => {
+function images_base(){
     const images_allFalse = {
-        "optipng": false,
-        "pngquant": false,
-        "zopflipng": false,
-        "jpegRecompress": false,
-        "mozjpeg": false,
-        "guetzli": false,
-        "gifsicle": false,
-        "svgo": false
+        optipng: false,
+        pngquant: false,
+        zopflipng: false,
+        jpegRecompress: false,
+        mozjpeg: false,
+        guetzli: false,
+        gifsicle: false,
+        svgo: false
     }
+    return site.images.files.all.image ? extend(true,images_allFalse,site.images.files.all.image) : images_allFalse
+}
+gulp.task('image-prebuildFiles', () => {
     const sizes = site.images.files.sizes
     const stream = gulp.src('files/**/*.{png,jpg,jpeg}')
-                .pipe($.image(site.images.files.all.image ? extend(true,images_allFalse,site.images.files.all.image) : images_allFalse))
-    const stream2 = merge2()
+    const stream2 = require('merge2')()
     for(i = 0; i < sizes.length; i++){
         stream2.add(
             stream
             .pipe($.imageResize(sizes[i].resize || {}))
+            .pipe($.image(sizes[i].image ? extend(true, images_base(), sizes[i].image) : images_allFalse))
             .pipe($.rename(sizes[i].rename || {}))
-            .pipe($.image(sizes[i].image ? extend(true,images_allFalse,sizes[i].image) : images_allFalse))
             .pipe(gulp.dest('dist/files'))
         )
     }
     stream2.add(
         gulp.src('files/**/*.{gif,svg}')
-        .pipe($.image({
+        .pipe($.image(extend(true, images_base(), {
             "gifsicle": true,
             "svgo": true
-        }))
+        })))
         .pipe(gulp.dest('dist/files'))
     )
 
     return stream2
 })
 
-gulp.task('clean-temp', (cb) => { del(temp_dir, cb) } )
-gulp.task('clean-docs', (cb) => { del('docs/', cb) } )
-gulp.task('clean-dist-docs', (cb) => { del('dist/docs/', cb) } )
-gulp.task('clean-dist-files', (cb) => { del('dist/files/', cb) } )
+gulp.task('image', () => {
+    if (!argv.i) new Error('ファイル/フォルダ名が指定されていません。 -i <path>を付けて指定してください。')
+    const parsed = path.parse(argv.i)
+    const sizes = site.images.files.sizes
+    const stream2 = require('merge2')()
+    const date = new Date()
+    let gifsvg, others
+    const dirname = `${date.getFullYear()}/${("0" + (date.getMonth() + 1)).slice(-2)}`
+    $.util.log(`image will be saved as "files/${dirname}/${parsed.name}${parsed.ext}"`)
+    if(parsed.ext == "") {
+        gifsvg = gulp.src(argv.i + '/**/*.{gif,svg}')
+        others = gulp.src(argv.i + '/**/*.{png,jpg,jpeg}')
+    } else if(parsed.ext == ".gif" || parsed.ext == ".svg") {
+        gifsvg = gulp.src(argv.i)
+    } else {
+        others = gulp.src(argv.i)
+    }
+    if(gifsvg){
+        stream2.add(
+            gifsvg
+            .pipe($.image(extend(true, images_base(), {
+                "gifsicle": true,
+                "svgo": true
+            })))
+            .pipe($.rename({dirname: dirname} || {}))
+            .pipe(gulp.dest('dist/files/images/imports'))
+        )
+        stream2.add(
+            gifsvg
+            .pipe($.rename({dirname: dirname} || {}))
+            .pipe(gulp.dest('files/images/imports'))
+        )
+    }
+    if(others){
+        for(i = 0; i < sizes.length; i++){
+            stream2.add(
+                others
+                .pipe($.imageResize(sizes[i].resize || {}))
+                .pipe($.image(sizes[i].image ? extend(true, images_base(), sizes[i].image) : images_allFalse))
+                .pipe($.rename(sizes[i].rename || {}))
+                .pipe($.rename({dirname: dirname} || {}))
+                .pipe(gulp.dest('dist/files/images/imports'))
+            )
+        }
+        stream2.add(
+            others
+            .pipe($.rename({dirname: dirname} || {}))
+            .pipe(gulp.dest('files/images/imports'))
+        )
+    }
+
+    return stream2
+})
+
+gulp.task('clean-docs', (cb) => { del(['docs/**/*', '!docs/.git']).then(cb()) } )
+gulp.task('clean-dist-docs', (cb) => { del('dist/docs/**/*').then(cb()) } )
+gulp.task('clean-dist-files', (cb) => { del('dist/files/**/*').then(cb()) } )
 
 gulp.task( 'debug-override', (cb) => {
     site = extend(true,site,require('./.config/debug_override.json'))
@@ -405,7 +535,7 @@ gulp.task('make-sw', (cb) => {
     const config = {
         'globDirectory': './dist/docs/',
         'globPatterns': [
-          '**/*.{css,js,json,woff2}'
+          '**/*.{css,js}'
         ],
         'globIgnores': [],
         'swSrc': 'theme/js/sw.js',
@@ -524,18 +654,19 @@ gulp.task('last',
         'copy-f404',
         'copy-docs',
         'clean-dist-docs',
-        (cb) => { cb() } 
+        (cb) => { cb() }
     )
 )
 
 gulp.task('copy-publish',
     gulp.series(
-        gulp.parallel(
-            'copy-theme-static',
-            'copy-files',
-            'copy-wtfpjax'
-        ),
-        (cb) => { cb() } 
+        'copy-files',
+        'copy-prebuildFiles',
+        'copy-theme-static',
+//        'copy-pjax',
+//        'copy-bootstrapjs',
+//        'copy-animatecss',
+        (cb) => { cb() }
     )
 )
 gulp.task('make-subfiles',
@@ -544,18 +675,20 @@ gulp.task('make-subfiles',
             'make-manifest',
             'make-browserconfig'
         ),
-        (cb) => { cb() } 
+        (cb) => { cb() }
     )
 )
 
 gulp.task('core',
     gulp.series(
-        gulp.parallel('js', 'css', 'pug'),
-        gulp.parallel('clean-temp', 'copy-publish', 'make-subfiles'),
+        gulp.parallel('js', 'css', 'fa-css', 'pug'),
+        gulp.parallel('copy-publish', 'make-subfiles'),
         'make-sw', 'last',
         (cb) => { cb() }
     )
 )
+
+
 
 gulp.task('default',
     gulp.series(
@@ -566,10 +699,22 @@ gulp.task('default',
     )
 )
 
+gulp.task('pages',
+    gulp.series(
+        'register',
+        'config',
+        'pug',
+        'make-subfiles',
+        'copy-f404',
+        'copy-docs',
+        'clean-dist-docs',
+        (cb) => { cb() }
+    )
+)
+
 gulp.task('prebuild-files',
     gulp.series(
         'clean-dist-files',
-        'copy-prebuildFiles',
         'image-prebuildFiles',
         (cb) => { cb() } 
     )
@@ -577,8 +722,8 @@ gulp.task('prebuild-files',
 
 gulp.task('core-with-pf',
     gulp.series(
-        gulp.parallel('js', 'css', 'pug', 'prebuild-files'),
-        gulp.parallel('clean-temp', 'copy-publish', 'make-subfiles'),
+        gulp.parallel('js', 'css', 'fa-css', 'pug'),
+        gulp.parallel('copy-publish', 'make-subfiles'),
         'make-sw', 'last',
         (cb) => { cb() }
     )
@@ -602,11 +747,12 @@ gulp.task('watcher',
 
 gulp.task('watch', (cb) => {
     gulp.watch(['theme/**/*', `!${temp_dir}**/*`, 'pages/**/*', './.config/**/*', './scripts/**/*'], gulp.series('watcher', 'server',(cb)=>{cb()}))
-    gulp.watch(['files/**/*', './.config/**/*'], gulp.series('watcher', 'prebuild-files',(cb)=>{cb()}))
+    gulp.watch(['files/**/*', './.config/**/*'], gulp.series('watcher',(cb)=>{cb()}))
 })
 
 gulp.task('connect', () => {
     $.connect.server({
+        port: '8081',
         root: 'docs',
         livereload: true
     })

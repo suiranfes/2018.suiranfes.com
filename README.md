@@ -1,17 +1,15 @@
 # 2018.surianfes.com
 
-UNDER DEVELOPMENT!
-
 ## LICENSES
 
 ### CONTENTS
 
-./pages/**/*
+`./pages/**/*` and `./files/**/*`
 
 NO LICENSE
 
 ### SYSTEM
 
-except ./pages/**/*
+except `./pages/**/*` and `./files/**/*`
 
 "maqz" system under CC0

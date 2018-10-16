@@ -1,6 +1,10 @@
 //-
   ナビゲーションバー
-
+nav#portal.text-center.bg-center.text-white
+  a(href="/")
+    | 第66回翠巒祭は、大盛況にて終了致しました。
+    br
+    | 最新情報などを掲載しているポータルサイトもご覧ください。
 nav#mainnav.navbar.navbar-light.bg-primary.flex-row.p-0
   button(class="navbar-toggler" type="button" data-toggle="collapse" aria-label="サイドバーを開く").bg-white.border-0.rounded-0.small.d-flex.d-lg-none.py-2.px-2.m-0.sidebar_opener
     div MENU
@@ -13,7 +17,6 @@ nav#mainnav.navbar.navbar-light.bg-primary.flex-row.p-0
 nav(aria-label="breadcrumb")#breadcrumb.bg-primary.sticky-top
   .container-fulid.px-1.px-lg-5
     ol.breadcrumb.bg-primary.text-warning.my-0.mx-md-5.mx-1.py-1.px-0
-      - let dirs = page.meta.permalink.split("/")                 // ["","foo","bar","hoge",""] (たとえば)
       if( dirs.length > 2 )
         li.breadcrumb-item
           a(href=`${site.url.path}/`).py-1.text-warning

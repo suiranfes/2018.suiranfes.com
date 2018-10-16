@@ -120,14 +120,8 @@ html(lang=site.locale)
 
       block js_head
 
-      block style
-        style
-          != new cleanCss().minify(fontawesome.dom.css()).styles
-
   body
-
     #grid
-
       block wo_footer
         block nav
           #nav
