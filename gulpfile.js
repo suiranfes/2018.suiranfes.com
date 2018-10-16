@@ -260,7 +260,7 @@ gulp.task('pug', async () => {
         switch(page.meta.src.ext){
             case '.md':
                 main_html = require("kramed")(page.body)
-                main_html = betterMarkdown(main_html, site.url.path)
+                main_html = betterMarkdown(main_html, urlPrefix)
                 // main_html = maly(main_html)
                 main_html = htmlmin(main_html ,{"collapseWhitespace": true,"removeEmptyAttributes": false,"removeEmptyElements": false})
                 break
@@ -275,7 +275,7 @@ gulp.task('pug', async () => {
                     console.log(`Error: ${page.meta.permalink}`)
                     throw Error(e)
                 }
-                if (page.attributes.improve) main_html = betterMarkdown(main_html, site.url.path)
+                if (page.attributes.improve) main_html = betterMarkdown(main_html, urlPrefix)
                 break
         }
         main_html = require('./scripts/highl')(main_html)
