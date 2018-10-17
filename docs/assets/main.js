@@ -8869,6 +8869,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				config: disqus_config
 			});
 		}
+		$('.carousel').carousel();
 	});
 
 	$(window).on('pjax:unload', function () {

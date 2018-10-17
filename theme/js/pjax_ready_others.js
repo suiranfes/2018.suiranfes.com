@@ -10,6 +10,7 @@ $(window).on('pjax:load',function(){
       config: disqus_config
     })
   }
+  $('.carousel').carousel()
 })
 
 $(window).on('pjax:unload',function(){
