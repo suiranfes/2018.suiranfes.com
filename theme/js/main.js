@@ -1,4 +1,4 @@
-require('jquery')
+require('jquery/dist/jquery.slim')
 
 require('./old_browsers')
 require('./gototop')

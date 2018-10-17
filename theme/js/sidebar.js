@@ -1,4 +1,4 @@
-var $ = require('jquery')
+var $ = require('jquery/dist/jquery.slim')
 
 function sidebar_show(){
     if(window.innerWidth > 992) return false
