@@ -1,8 +1,8 @@
 {
-  "name": "joinmisskey.github.io",
+  "name": "2018.suiranfes.com",
   "version": "1.0.0",
   "main": "docs/index.html",
-  "description": "joinmisskey.github.io",
+  "description": "2018.suiranfes.com",
   "scripts": {
     "build-files": "gulp prebuild-files",
     "build2deploy": "gulp",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joinmisskey/joinmisskey.github.io"
+    "url": "git+https://github.com/suiranfes/2018.suiranfes.com"
   },
   "author": "tamaina <tamaina@hotmail.co.jp> (https://misskey.xyz/@aqz)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joinmisskey/joinmisskey.github.io/issues"
+    "url": "https://github.com/suiranfes/2018.suiranfes.com/issues"
   },
-  "homepage": "https://joinmisskey.github.io/",
+  "homepage": "https://2018.suiranfes.com/",
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-brands-svg-icons": "^5.3.1",
